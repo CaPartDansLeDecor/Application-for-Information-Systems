@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+     <head>
+        <title>client</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <button id="bouton-profil">Mon Profil</button>  
+        <button id="bouton-voyance">Nouvelle Voyance</button>  
+        <button id="bouton-deconnexion"> Déconnexion </button>  
+        <h1> Historique </h1> <br>
+        Médium : <input id="champ-medium" name="Médium" />
+        Type de medium : 
+        <select id = "champ-typeMedium" name="typeMedium" size="1">
+        <option> Choisir </option>
+        <option > Voyant </option>
+        <option > Tarologue </option>
+        <option > Astrologue </option>
+        </select> 
+        <button id="bouton-rechercher"> Rechercher </button>  
+        <table border="1" width="100%">
+        <tr>
+         <td> Medium </td>
+         <td> Type de médium </td>
+         <td> Date </td>
+         <td> Début </td>
+         <td> Début </td>
+        </tr>
+        </table>
+        <script>
+
+            function chargerHistorique() {
+                
+                var champMedium = $('#champ-medium').val();
+                var champTypeMedium = $('#champ-typeMedium').val();
+                
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'POST',
+                    data: {
+                        action: 'historique',
+                        medium: champMedium,
+                        typeMedium: champTypeMedium
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                   
+                }).fail( function (error) { // Appel KO => erreur a gérer
+
+                    
+                });
+            }
+
+            $(document).ready(function () {
+                // ajout d'un "handler" sur le clic du bouton de connexion
+                $('#bouton-profil').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Profil"');
+                    // appel de la fonction connexion
+                    window.location = "ClientProfil.html";
+                });
+                $('#bouton-voyance').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Nouvelle Voyance"');
+                    window.location = "ClientNouvelleVoyance.html";
+                });
+                $('#bouton-deconnexion').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Deconnexion"');
+                    window.location = "Connexion.html";
+                });
+                $('#bouton-rechercher').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Rechercher"');
+                    chargerHistorique();
+                });
+
+                chargerHistorique();
+            });
+
+
+        </script>
+    </body>
+</html>

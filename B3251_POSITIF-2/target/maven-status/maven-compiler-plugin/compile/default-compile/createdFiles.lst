@@ -1,0 +1,11 @@
+Serialisation\Serialisation.class
+Actions\ActionClientProfil.class
+Serialisation\SerialisationConnexion.class
+Actions\ActionInscription.class
+Servlet\ActionServlet.class
+Serialisation\SerialisationClientProfil.class
+Actions\Action.class
+Serialisation\SerialisationInscription.class
+Actions\ActionConnexion.class
+Actions\ActionHistorique.class
+Serialisation\SerialisationHistorique.class
