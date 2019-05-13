@@ -10,14 +10,18 @@ package Servlet;
 
 import Actions.ActionClientProfil;
 import Actions.ActionConnexion;
+import Actions.ActionDemanderVoyance;
 import Actions.ActionDonneesVoyance;
 import Actions.ActionHistorique;
 import Actions.ActionInscription;
+import Actions.ActionNouvelleVoyance;
 import Serialisation.SerialisationClientProfil;
 import Serialisation.SerialisationConnexion;
+import Serialisation.SerialisationDemanderVoyance;
 import Serialisation.SerialisationDonneesVoyance;
 import Serialisation.SerialisationHistorique;
 import Serialisation.SerialisationInscription;
+import Serialisation.SerialisationNouvelleVoyance;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -87,12 +91,23 @@ public class ActionServlet extends HttpServlet {
                 actionHistorique.executer(request);
                 serialisationHistorique.serialiser(request, response);
             break;
-            
             case "donneesVoyance":
                 ActionDonneesVoyance actionDonneesVoyance = new ActionDonneesVoyance();
                 SerialisationDonneesVoyance serialisationDonneesVoyance = new SerialisationDonneesVoyance();
                 actionDonneesVoyance.executer(request);
                 serialisationDonneesVoyance.serialiser(request, response);
+            break;
+             case "nouvelleVoyance":
+                ActionNouvelleVoyance actionNouvelleVoyance = new ActionNouvelleVoyance();
+                SerialisationNouvelleVoyance serialisationNouvelleVoyance = new SerialisationNouvelleVoyance();
+                actionNouvelleVoyance.executer(request);
+                serialisationNouvelleVoyance.serialiser(request, response);
+            break;
+            case "demanderVoyance":
+                ActionDemanderVoyance actionDemanderVoyance = new ActionDemanderVoyance();
+                SerialisationDemanderVoyance serialisationDemanderVoyance = new SerialisationDemanderVoyance();
+                actionDemanderVoyance.executer(request);
+                serialisationDemanderVoyance.serialiser(request, response);
             break;
                 
         }
@@ -155,3 +170,5 @@ public class ActionServlet extends HttpServlet {
   }
         
 }
+
+
