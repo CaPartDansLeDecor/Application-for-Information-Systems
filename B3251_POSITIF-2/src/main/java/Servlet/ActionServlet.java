@@ -83,7 +83,7 @@ public class ActionServlet extends HttpServlet {
                 ActionHistorique actionHistorique = new ActionHistorique();
                 SerialisationHistorique serialisationHistorique = new SerialisationHistorique();
                 actionHistorique.executer(request);
-                
+                serialisationHistorique.serialiser(request, response);
             break;
                 
         }

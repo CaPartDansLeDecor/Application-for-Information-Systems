@@ -44,6 +44,8 @@ public class SerialisationClientProfil extends Serialisation{
         jsonContainer.addProperty("aniTot", client.getAnimal());
         jsonContainer.addProperty("couleurBonheur", client.getCouleur());
         
+        
+        
         PrintWriter out = this.getWriterWithJsonHeader(response);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         gson.toJson(jsonContainer, out);

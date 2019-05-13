@@ -25,13 +25,13 @@ and open the template in the editor.
         <option > Astrologue </option>
         </select> 
         <button id="bouton-rechercher"> Rechercher </button>  
-        <table border="1" width="100%">
+        <table id="tableau" border="1" width="100%">
         <tr>
          <td> Medium </td>
          <td> Type de médium </td>
          <td> Date </td>
          <td> Début </td>
-         <td> Début </td>
+         <td> Fin </td>
         </tr>
         </table>
         <script>
@@ -51,9 +51,15 @@ and open the template in the editor.
                     },
                     dataType: 'json'
                 }).done(function (data) {
-                   
+                    console.log(data);
+                    $('#tableau').empty();
+                    $('#tableau').append("<tr><td> Medium </td> <td> Type de médium </td> <td> Date </td> <td> Début </td> <td> Fin </td></tr>");
+                    $.each(data.voyances, function(i,voyance){
+                        $('#tableau').append("<tr><td>" + voyance.medium + "</td> <td>" + voyance.typeMedium + "</td> <td>" + voyance.date + "</td> <td>" + voyance.debut + "</td> <td>" + voyance.fin+ "</td></tr>");
+                    
+                    });
                 }).fail( function (error) { // Appel KO => erreur a gérer
-
+                    
                     
                 });
             }

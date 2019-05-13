@@ -51,7 +51,7 @@ public class ActionHistorique extends Action{
                 }
             }
         }
-        System.out.println(voyancesFiltrees.size());
+        request.setAttribute("voyances",voyancesFiltrees);
         return false;
     }
     
