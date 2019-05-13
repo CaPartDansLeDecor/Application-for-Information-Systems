@@ -8,7 +8,7 @@ import metier.data.Client;
 import metier.data.Employe;
 import metier.data.Medium;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-05-12T16:24:23")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-05-13T18:05:07")
 @StaticMetamodel(Voyance.class)
 public class Voyance_ { 
 

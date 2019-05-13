@@ -1,11 +1,13 @@
 Serialisation\Serialisation.class
 Actions\ActionClientProfil.class
-Serialisation\SerialisationConnexion.class
+Actions\ActionDonneesVoyance.class
 Actions\ActionInscription.class
 Servlet\ActionServlet.class
 Serialisation\SerialisationClientProfil.class
 Actions\Action.class
+Serialisation\SerialisationHistorique.class
+Serialisation\SerialisationConnexion.class
 Serialisation\SerialisationInscription.class
 Actions\ActionConnexion.class
+Serialisation\SerialisationDonneesVoyance.class
 Actions\ActionHistorique.class
-Serialisation\SerialisationHistorique.class

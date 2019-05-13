@@ -80,6 +80,14 @@ public class Employe implements Serializable {
         return telephone;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public List<Voyance> getListeVoyance() {
         return listeVoyance;
     }

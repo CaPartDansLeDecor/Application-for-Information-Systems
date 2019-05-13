@@ -51,7 +51,6 @@ and open the template in the editor.
                     },
                     dataType: 'json'
                 }).done(function (data) {
-                    console.log(data);
                     $('#tableau').empty();
                     $('#tableau').append("<tr><td> Medium </td> <td> Type de médium </td> <td> Date </td> <td> Début </td> <td> Fin </td></tr>");
                     $.each(data.voyances, function(i,voyance){

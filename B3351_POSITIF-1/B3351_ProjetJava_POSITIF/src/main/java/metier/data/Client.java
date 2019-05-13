@@ -73,6 +73,7 @@ public class Client implements Serializable {
     }
 
     public List<Voyance> getListeVoyance() {
+        System.out.println("taille : " + listeVoyance.size());
         return listeVoyance;
     }
 

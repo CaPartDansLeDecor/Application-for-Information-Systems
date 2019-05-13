@@ -10,10 +10,12 @@ package Servlet;
 
 import Actions.ActionClientProfil;
 import Actions.ActionConnexion;
+import Actions.ActionDonneesVoyance;
 import Actions.ActionHistorique;
 import Actions.ActionInscription;
 import Serialisation.SerialisationClientProfil;
 import Serialisation.SerialisationConnexion;
+import Serialisation.SerialisationDonneesVoyance;
 import Serialisation.SerialisationHistorique;
 import Serialisation.SerialisationInscription;
 import com.google.gson.Gson;
@@ -84,6 +86,13 @@ public class ActionServlet extends HttpServlet {
                 SerialisationHistorique serialisationHistorique = new SerialisationHistorique();
                 actionHistorique.executer(request);
                 serialisationHistorique.serialiser(request, response);
+            break;
+            
+            case "donneesVoyance":
+                ActionDonneesVoyance actionDonneesVoyance = new ActionDonneesVoyance();
+                SerialisationDonneesVoyance serialisationDonneesVoyance = new SerialisationDonneesVoyance();
+                actionDonneesVoyance.executer(request);
+                serialisationDonneesVoyance.serialiser(request, response);
             break;
                 
         }

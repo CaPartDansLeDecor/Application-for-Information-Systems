@@ -87,6 +87,8 @@ public class Main {
         
         //recuperation de la voyance active
         Voyance voyanceActive=service.recupererVoyanceActive(employeConnecte);
+        //recuperation de la voyance active
+        
         
         if(voyanceActive == null){
             System.out.println("Mauvais employé connecté");
@@ -108,7 +110,7 @@ public class Main {
         //Test multiple demande de voyance
         System.out.println("\n Test multiple demande de voyance :");
         for(int i=0;i<6;i++){
-            service.demanderVoyance(listeMedium.get(2), clientConnecteCoteClient);
+            service.demanderVoyance(listeMedium.get(11), clientConnecteCoteClient);
         }
         
         //Test des recherche
@@ -139,6 +141,7 @@ public class Main {
         
         System.out.println("**********************");
         List<Voyance> lv = clientConnecteCoteClient.getListeVoyance();
+        
         System.out.println(lv.get(0).getCommentaire());
         JpaUtil.destroy();
     }

@@ -12,14 +12,64 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
-        <button id="bouton-historique">Voyance</button>  
-        <button id="bouton-voyance">Tableau de Bord</button>  
+        <button id="bouton-voyance">Voyance</button> 
         <button id="bouton-deconnexion"> Déconnexion </button>  
         <h1> Statistiques </h1> <br>
         <h2> Nombre de client par employé </h2>
         <h2> Nombre de client par medium </h2>
+        <script>
+            function remplirDonnees() {
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'GET',
+                    data: {
+                        action: 'afficherTableauBord'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                   /*$('#civilite').html(data.civilite);
+                   $('#nom').html(data.nom);
+                   $('#prenom').html(data.prenom);
+                   $('#dateNaissance').html(data.dateNaissance);
+                   $('#codePostal').html(data.codePostal);
+                   $('#tel').html(data.tel);
+                   $('#mail').html(data.mail);
+                   $('#sgnAstro').html(data.sgnAstro);
+                   $('#sgnChinois').html(data.sgnChinois);
+                   $('#aniTotem').html(data.aniTot);
+                   $('#couleurBonheur').html(data.couleurBonheur);*/
+                }).fail( function (error) { // Appel KO => erreur a gérer
+
+                    // Popup avec message d'erreur :
+                    alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+                    // Message d'erreur dans la div #message :
+                    $('#message').html('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+
+                });
+            }
+
+            $(document).ready(function () {
+                // ajout d'un "handler" sur le clic du bouton de connexion
+                $('#bouton-deconnexion').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Déconnexion"');
+                    // appel de la fonction connexion
+                    window.location = "Connexion.html";
+                });
+                $('#bouton-voyance').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Voyance"');
+                    window.location = "EmployeVoyance.html";
+                });
+
+                //remplirDonnees();
+            });
+        
+        
+        </script>
     </body>
     
-    <script> </script>
+    
         
 </html>
