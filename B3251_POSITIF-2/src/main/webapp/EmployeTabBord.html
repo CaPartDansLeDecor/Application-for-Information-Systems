@@ -17,7 +17,11 @@ and open the template in the editor.
         <h1> Statistiques </h1> <br>
         <h2> Nombre de client par employé </h2>
         <canvas id="canvas" width="750" height="150"></canvas>
+        <table id="Employe" border="1"> </table>
         <h2> Nombre de client par medium </h2>
+        <!-- <div id="nom"> </div>
+        <div id="nbApparition"> </div> -->
+        <table id="Medium" border="1"> </table>
         <script>
             var canvas  = document.querySelector('#canvas');
             var context = canvas.getContext('2d');
@@ -56,27 +60,33 @@ and open the template in the editor.
 
 
 
-        function remplirDonnees() {
+        function obtenirStatistiques() {
 
                 $.ajax({
                     url: './ActionServlet',
                     method: 'GET',
                     data: {
-                        action: 'afficherTableauBord'
+                        action: 'statistiques'
                     },
                     dataType: 'json'
                 }).done(function (data) {
-                   /*$('#civilite').html(data.civilite);
-                   $('#nom').html(data.nom);
-                   $('#prenom').html(data.prenom);
-                   $('#dateNaissance').html(data.dateNaissance);
-                   $('#codePostal').html(data.codePostal);
-                   $('#tel').html(data.tel);
-                   $('#mail').html(data.mail);
-                   $('#sgnAstro').html(data.sgnAstro);
-                   $('#sgnChinois').html(data.sgnChinois);
-                   $('#aniTotem').html(data.aniTot);
-                   $('#couleurBonheur').html(data.couleurBonheur);*/
+                
+                   $("#Employe").empty();
+                   $("#Employe").append("<td> Nom </td> <td> Nombre d'Apparition </td>");
+                   $("#Medium").empty();
+                   $("#Medium").append("<td> Nom </td> <td> Nombre d'Apparition </td>");
+         
+                   $.each(data.objets, function(i,o){
+                       if (o.nomMedium) {
+                           $("#Employe").append("<tr> <td> " + o.nomMedium + " </td> <td>" + o.nbVoyanceAssocie + " </td> </tr>");
+                       } else {
+                           $("#Medium").append("<tr> <td> Voyant </td> <td> " + o.Voyant + " </td> </tr>");
+                           $("#Medium").append("<tr> <td> Tarologue </td> <td> " + o.Tarologue + " </td> </tr>");
+                           $("#Medium").append("<tr> <td> Astrologue </td> <td> " + o.Astrologue + " </td> </tr>");
+                            
+                       }
+                       
+                   });
                 }).fail( function (error) { // Appel KO => erreur a gérer
 
                     // Popup avec message d'erreur :
@@ -100,6 +110,7 @@ and open the template in the editor.
                     console.log('Clic sur le bouton "Voyance"');
                     window.location = "EmployeVoyance.html";
                 });
+                obtenirStatistiques();
 
                 //remplirDonnees();
             });
