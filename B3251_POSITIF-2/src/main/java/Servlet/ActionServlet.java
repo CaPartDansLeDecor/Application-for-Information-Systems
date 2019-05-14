@@ -115,6 +115,13 @@ public class ActionServlet extends HttpServlet {
                 actionCommencerVoyance.executer(request);
                 serialisationCommencerVoyance.serialiser(request, response);
             break;
+            
+            case "statistiques":
+                ActionStatistiques actionStatistiques = new ActionStatistiques();
+                SerialisationStatistiques serialisationStatistiques = new SerialisationStatistiques();
+                actionStatistiques.executer(request);
+                serialisationStatistiques.serialiser(request, response);
+            break;
                 
         }
     }
