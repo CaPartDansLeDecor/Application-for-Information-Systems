@@ -9,6 +9,7 @@ package Servlet;
  */
 
 import Actions.ActionClientProfil;
+import Actions.ActionCommencerVoyance;
 import Actions.ActionConnexion;
 import Actions.ActionDemanderVoyance;
 import Actions.ActionDonneesVoyance;
@@ -16,27 +17,21 @@ import Actions.ActionHistorique;
 import Actions.ActionInscription;
 import Actions.ActionNouvelleVoyance;
 import Serialisation.SerialisationClientProfil;
+import Serialisation.SerialisationCommencerVoyance;
 import Serialisation.SerialisationConnexion;
 import Serialisation.SerialisationDemanderVoyance;
 import Serialisation.SerialisationDonneesVoyance;
 import Serialisation.SerialisationHistorique;
 import Serialisation.SerialisationInscription;
 import Serialisation.SerialisationNouvelleVoyance;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import dao.JpaUtil;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import metier.data.Client;
-import metier.data.Employe;
 import metier.service.Service;
 /**
  *
@@ -70,14 +65,15 @@ public class ActionServlet extends HttpServlet {
                 SerialisationConnexion serialisationConnexion = new SerialisationConnexion();
                 actionConnexion.executer(request);
                 serialisationConnexion.serialiser(request, response);
-                
             break;
+            
             case "inscription":
                 ActionInscription actionInscription = new ActionInscription();
                 SerialisationInscription serialisationInscription = new SerialisationInscription();
                 actionInscription.executer(request);
                 serialisationInscription.serialiser(request, response);
             break;
+            
             case "afficherProfil":
                 ActionClientProfil actionClientProfil = new ActionClientProfil();
                 SerialisationClientProfil serialisationClientProfil = new SerialisationClientProfil();
@@ -91,23 +87,33 @@ public class ActionServlet extends HttpServlet {
                 actionHistorique.executer(request);
                 serialisationHistorique.serialiser(request, response);
             break;
+            
             case "donneesVoyance":
                 ActionDonneesVoyance actionDonneesVoyance = new ActionDonneesVoyance();
                 SerialisationDonneesVoyance serialisationDonneesVoyance = new SerialisationDonneesVoyance();
                 actionDonneesVoyance.executer(request);
                 serialisationDonneesVoyance.serialiser(request, response);
             break;
+            
              case "nouvelleVoyance":
                 ActionNouvelleVoyance actionNouvelleVoyance = new ActionNouvelleVoyance();
                 SerialisationNouvelleVoyance serialisationNouvelleVoyance = new SerialisationNouvelleVoyance();
                 actionNouvelleVoyance.executer(request);
                 serialisationNouvelleVoyance.serialiser(request, response);
             break;
+            
             case "demanderVoyance":
                 ActionDemanderVoyance actionDemanderVoyance = new ActionDemanderVoyance();
                 SerialisationDemanderVoyance serialisationDemanderVoyance = new SerialisationDemanderVoyance();
                 actionDemanderVoyance.executer(request);
                 serialisationDemanderVoyance.serialiser(request, response);
+            break;
+            
+            case"commencerVoyance":
+                ActionCommencerVoyance actionCommencerVoyance = new ActionCommencerVoyance();
+                SerialisationCommencerVoyance serialisationCommencerVoyance = new SerialisationCommencerVoyance();
+                actionCommencerVoyance.executer(request);
+                serialisationCommencerVoyance.serialiser(request, response);
             break;
                 
         }
