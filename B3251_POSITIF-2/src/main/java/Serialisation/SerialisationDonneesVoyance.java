@@ -53,18 +53,16 @@ public class SerialisationDonneesVoyance extends Serialisation{
             
             JsonArray jsonArrayVoyances = new JsonArray();
             List<Voyance> voyances = clientConcerne.getListeVoyance();
-            System.out.println("**************************");
             for(Voyance v : voyances){
-                System.out.println(voyance.getCommentaire());
-                //if(voyance.getCommentaire()!=null){
+                if(v.getCommentaire()!=null){
                     JsonObject jsonVoyance = new JsonObject();
 
                     jsonVoyance.addProperty("medium",v.getMedium().getNom());
                     jsonVoyance.addProperty("typeMedium",v.getMedium().getTalent());
-                    jsonVoyance.addProperty("commentaire","null");
+                    jsonVoyance.addProperty("commentaire",v.getCommentaire());
 
                     jsonArrayVoyances.add(jsonVoyance); 
-                //}
+                }
             }
             jsonContainer.add("voyances",jsonArrayVoyances);
             jsonContainer.addProperty("clientSigneAstro",clientConcerne.getSigneAstro());
