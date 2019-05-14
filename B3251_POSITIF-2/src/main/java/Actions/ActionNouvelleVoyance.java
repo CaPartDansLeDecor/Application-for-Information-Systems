@@ -21,18 +21,11 @@ public class ActionNouvelleVoyance extends Action {
     public boolean executer(HttpServletRequest request){
         String typeMedium = request.getParameter("typeMedium");
         Service service = new Service();
-        List<Medium> mediums = service.recupererListeMedium();
-        List<Medium> mediumsFiltres = new ArrayList<>();
+        List<Medium> mediums = service.rechercherMediumParTalent(typeMedium);
         if (typeMedium.equals("Choisir")) {
-            mediumsFiltres = mediums;
-        } else {
-            for(Medium m : mediums){
-                if(m.getTalent().equals(typeMedium)){
-                    mediumsFiltres.add(m);
-                }
-            }
+            mediums = service.recupererListeMedium();
         }
-        request.setAttribute("mediums", mediumsFiltres);
+        request.setAttribute("mediums", mediums);
         return false;
     }
 }
