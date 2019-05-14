@@ -46,6 +46,9 @@ and open the template in the editor.
         <div id="coeur"> </div>
         <div id="sante"> </div>
         <div id="travail"> </div>
+        
+        <div id="voyanceRunning"> </div>
+        <div id="popup"> </div>
          
         <button id="bouton-prediction"> Générer Prédiction </button> 
         <button id="bouton-commencerVoyance"> Commencer la voyance </button> 
@@ -80,7 +83,6 @@ and open the template in the editor.
                         $('#nomMedium').html(data.mediumNom); 
                         $('#medium').html(data.mediumSpecialite); 
                         $('#description').html(data.mediumDescription);
-                        console.log(data.mediumSpecialite);
                         if(data.mediumSpecialite === 'Voyant'){
                             $('#specialite').html(data.voyantSpecialite);
                         } else if(data.mediumSpecialite === 'Astrologue'){
@@ -89,7 +91,6 @@ and open the template in the editor.
                         }
                         $('#tableau').empty();
                         $('#tableau').append("<tr><td> Medium </td> <td> Type de médium </td> <td> Commentaire </td> </tr>");
-                        console.log(data.voyances);
                         $.each(data.voyances, function(i,v){
                             $('#tableau').append("<tr><td>" + v.medium + "</td> <td>" + v.typeMedium + "</td> <td>" + v.commentaire + "</td></tr>");
                         });
@@ -97,17 +98,6 @@ and open the template in the editor.
                     } else {
                         $('#voyance').html('Aucune voyance attribuée actuellement');
                     }
-                   /*$('#civilite').html(data.civilite);
-                   $('#nom').html(data.nom);
-                   $('#prenom').html(data.prenom);
-                   $('#dateNaissance').html(data.dateNaissance);
-                   $('#codePostal').html(data.codePostal);
-                   $('#tel').html(data.tel);
-                   $('#mail').html(data.mail);
-                   $('#sgnAstro').html(data.sgnAstro);
-                   $('#sgnChinois').html(data.sgnChinois);
-                   $('#aniTotem').html(data.aniTot);
-                   $('#couleurBonheur').html(data.couleurBonheur);*/
                 }).fail( function (error) { // Appel KO => erreur a gérer
 
                     // Popup avec message d'erreur :
@@ -117,6 +107,62 @@ and open the template in the editor.
 
                 });
             }
+            
+            function CommencerVoyance() {
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'GET',
+                    data: {
+                        action: 'commencerVoyance'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    if(data.voyanceActive){
+                        $('#voyanceRunning').html("Voyance en cours");
+                    } else {
+                        if(data.voyanceDejaEnCours){
+                            $('#voyanceRunning').html("Voyage déja en cours");
+                        } else {
+                            $('#voyanceRunning').html("Aucune voyance attribuée");
+                        }
+                    }
+                }).fail( function (error) { // Appel KO => erreur a gérer
+
+                    // Popup avec message d'erreur :
+                    alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+                    // Message d'erreur dans la div #message :
+                    $('#message').html('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+
+                });
+            }
+            
+            function TerminerVoyance() {
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'GET',
+                    data: {
+                        action: 'terminerVoyance'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    if(data.voyanceEnCours){
+                        $('#popup').html("POPUP");
+                    } else {
+                        $('#popup').html("Aucune voyance en cours");
+                    }
+                }).fail( function (error) { // Appel KO => erreur a gérer
+
+                    // Popup avec message d'erreur :
+                    alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+                    // Message d'erreur dans la div #message :
+                    $('#message').html('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+
+                });
+            }
+            
+            
 
             $(document).ready(function () {
                 // ajout d'un "handler" sur le clic du bouton de connexion
@@ -130,6 +176,16 @@ and open the template in the editor.
                     // affichage pour debugage dans la console javascript du navigateur
                     console.log('Clic sur le bouton "Tableau de Bord"');
                     window.location = "EmployeTabBord.html";
+                });
+                 $('#bouton-commencerVoyance').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Commencer Voyance"');
+                    CommencerVoyance();
+                });
+                 $('#bouton-terminerVoyance').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Terminer Voyance"');
+                    TerminerVoyance();
                 });
 
                 RemplirDonneesVoyance();
