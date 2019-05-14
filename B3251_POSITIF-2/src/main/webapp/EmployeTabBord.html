@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <title>client</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
@@ -16,9 +16,47 @@ and open the template in the editor.
         <button id="bouton-deconnexion"> Déconnexion </button>  
         <h1> Statistiques </h1> <br>
         <h2> Nombre de client par employé </h2>
+        <canvas id="canvas" width="750" height="150"></canvas>
         <h2> Nombre de client par medium </h2>
         <script>
-            function remplirDonnees() {
+            var canvas  = document.querySelector('#canvas');
+            var context = canvas.getContext('2d');
+            context.fillText("texte", 10, 140);
+            context.fillText("texte", 60, 140);
+            context.fillText("texte", 110, 140);
+            context.fillText("texte", 160, 140);
+            context.fillText("texte", 210, 140);
+            context.fillText("texte", 260, 140);
+            context.fillText("texte", 310, 140);
+            context.fillText("texte", 360, 140);
+            context.fillText("texte", 410, 140);
+            context.fillText("texte", 460, 140);
+            context.fillText("texte", 510, 140);
+            context.fillText("texte", 560, 140);
+            var hauteurMax = 120;
+            var taille = 80;
+            context.fillStyle = "gold";
+            context.fillRect(5, hauteurMax - taille, 45, taille);
+            context.fillRect(55, 0, 45, 120);
+            context.fillRect(105, hauteurMax - taille, 45, taille);
+            context.fillRect(155, 0, 45, 120);
+            context.fillRect(205, hauteurMax - taille, 45, taille);
+            context.fillRect(255, 0, 45, 120);
+            context.fillRect(305, hauteurMax - taille, 45, taille);
+            context.fillRect(355, 0, 45, 120);
+            context.fillRect(405, hauteurMax - taille, 45, taille);
+            context.fillRect(455, 0, 45, 120);
+            context.fillRect(505, hauteurMax - taille, 45, taille);
+            context.fillRect(555, 0, 45, 120);
+            context.fillRect(605, 0, hauteurMax - taille, 45, taille);
+            context.fillRect(655, 0, 45, 120);
+            context.fillRect(705, 0, hauteurMax - taille, 45, taille);
+          
+		
+
+
+
+        function remplirDonnees() {
 
                 $.ajax({
                     url: './ActionServlet',
@@ -65,7 +103,10 @@ and open the template in the editor.
 
                 //remplirDonnees();
             });
-        
+
+            
+            
+            
         
         </script>
     </body>
@@ -73,3 +114,4 @@ and open the template in the editor.
     
         
 </html>
+
