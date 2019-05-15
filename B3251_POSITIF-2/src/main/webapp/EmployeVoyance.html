@@ -6,12 +6,20 @@ and open the template in the editor.
 -->
 <html>
      <head>
+         
+         <link rel="stylesheet" href="style.css" type="text/css">
+         <link rel="stylesheet" href="style.css" type="text/css"/>
+         <link rel="stylesheet" href="style.css" type="text/css">
+
+
+
+
         <title>client</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
-    <body>
+    <body id='body'>
         <button id="bouton-tabBord"> Tableau de Bord </button>  
         <button id="bouton-deconnexion"> Deconnexion </button>  <br>
         
@@ -48,12 +56,27 @@ and open the template in the editor.
         <div id="travail"> </div>
         
         <div id="voyanceRunning"> </div>
-        <div id="popup"> </div>
+        
          
         <button id="bouton-prediction"> Générer Prédiction </button> 
         <button id="bouton-commencerVoyance"> Commencer la voyance </button> 
         <button id="bouton-terminerVoyance"> Terminer la voyance </button> 
+        
+        <!--Creates the popup body-->
+        <div class="popup-overlay">
+        <!--Creates the popup content-->
+        <div class="popup-content">
+            <h2>Terminer la Voyance</h2>
+            <p> Commentaire : </p>
+            <input id="champ-commentaire"/>
+            <button id="bouton-envoyerCommentaire"> Terminer la voyance </button>
+            <p id='error'></p>
+        </div>
+        </div>
+        
         <script>
+            
+            
             function RemplirDonneesVoyance() {
 
                 $.ajax({
@@ -94,9 +117,16 @@ and open the template in the editor.
                         $.each(data.voyances, function(i,v){
                             $('#tableau').append("<tr><td>" + v.medium + "</td> <td>" + v.typeMedium + "</td> <td>" + v.commentaire + "</td></tr>");
                         });
+                        if(data.voyanceDejaEnCours){
+                            $('#voyanceRunning').html("Voyance en cours");
+                        } else {
+                            $('#voyanceRunning').html("");
+                        }
                         
                     } else {
-                        $('#voyance').html('Aucune voyance attribuée actuellement');
+                        $('#voyance').html('Aucune voyance attribuée actuellement')
+                        //A voir pour faire un truc de ce style
+                        //$('#body').html("<h1> Aucune voyance attribuée actuellement </h1>");
                     }
                 }).fail( function (error) { // Appel KO => erreur a gérer
 
@@ -122,7 +152,7 @@ and open the template in the editor.
                         $('#voyanceRunning').html("Voyance en cours");
                     } else {
                         if(data.voyanceDejaEnCours){
-                            $('#voyanceRunning').html("Voyage déja en cours");
+                            $('#voyanceRunning').html("Voyance déja en cours");
                         } else {
                             $('#voyanceRunning').html("Aucune voyance attribuée");
                         }
@@ -148,9 +178,40 @@ and open the template in the editor.
                     dataType: 'json'
                 }).done(function (data) {
                     if(data.voyanceEnCours){
-                        $('#popup').html("POPUP");
+                        $(".popup, .popup-content").addClass("active");
                     } else {
                         $('#popup').html("Aucune voyance en cours");
+                    }
+                }).fail( function (error) { // Appel KO => erreur a gérer
+
+                    // Popup avec message d'erreur :
+                    alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+                    // Message d'erreur dans la div #message :
+                    $('#message').html('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+
+                });
+            }
+            
+            function EnvoyerCommentaire() {
+                var champCommentaire = $('#champ-commentaire').val();    
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'GET',
+                    data: {
+                        commentaire: champCommentaire,
+                        action: 'envoyerCommentaire'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    if(data.champNonRempli){
+                        $('#error').html("Vous devez remplir le champ commentaire.");
+                    } else {
+                        if(!data.error){
+                            $(".popup, .popup-content").removeClass("active");
+                            RemplirDonneesVoyance();
+                        } else {
+                            $('#error').html("Erreur");
+                        }
                     }
                 }).fail( function (error) { // Appel KO => erreur a gérer
 
@@ -177,15 +238,20 @@ and open the template in the editor.
                     console.log('Clic sur le bouton "Tableau de Bord"');
                     window.location = "EmployeTabBord.html";
                 });
-                 $('#bouton-commencerVoyance').on('click', function () {
+                $('#bouton-commencerVoyance').on('click', function () {
                     // affichage pour debugage dans la console javascript du navigateur
                     console.log('Clic sur le bouton "Commencer Voyance"');
                     CommencerVoyance();
                 });
-                 $('#bouton-terminerVoyance').on('click', function () {
+                $('#bouton-terminerVoyance').on('click', function () {
                     // affichage pour debugage dans la console javascript du navigateur
                     console.log('Clic sur le bouton "Terminer Voyance"');
                     TerminerVoyance();
+                });
+                $('#bouton-envoyerCommentaire').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Envoyer Commentaire"');
+                    EnvoyerCommentaire();
                 });
 
                 RemplirDonneesVoyance();

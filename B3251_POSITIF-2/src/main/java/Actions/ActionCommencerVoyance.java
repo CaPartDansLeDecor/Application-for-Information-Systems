@@ -5,6 +5,7 @@
  */
 package Actions;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import metier.data.Client;
@@ -21,31 +22,32 @@ public class ActionCommencerVoyance extends Action{
     @Override
     public boolean executer(HttpServletRequest request){ 
 
-        System.out.println("************************************");
+        
         Service service = new Service();
         
         HttpSession session = request.getSession(true);
         Employe employeConnecte = (Employe)session.getAttribute("Connected");
         
         Voyance voyanceActive = service.recupererVoyanceActive(employeConnecte);
-        System.out.println(voyanceActive);
+        List<Voyance> voyances = employeConnecte.getListeVoyance();
         if(voyanceActive == null){
-            request.setAttribute("voyanceActive",false);
-            request.setAttribute("voyanceDejaEnCours",false);
-        } else {
-            if(voyanceActive.getDebut()==null){
-                request.setAttribute("voyanceActive",true);
-                service.commencerVoyance(voyanceActive);
-                //TEST POUR VOIR QUAND VOYANCEACTIVE EST NUL
-                //PROBLEME SUREMENT DU AU SERVICE RECUPERERVOYANCEACTIVE
-                System.out.println("1 : " + voyanceActive);
-
+            Voyance voyance = null;
+            for(Voyance v : voyances){
+                if(v.getDebut()!=null && v.getFin()==null){
+                    voyance = v;
+                }
+            }
+            if(voyance!=null){
+                request.setAttribute("voyanceActive",false);
+                request.setAttribute("voyanceDejaEnCours",true);
             } else {
                 request.setAttribute("voyanceActive",false);
-                request.setAttribute("voyanceDejaEnCours",true);   
-
-                
+                request.setAttribute("voyanceDejaEnCours",false); 
             }
+        } else {
+            request.setAttribute("voyanceActive",true);
+            request.setAttribute("voyanceDejaEnCours",false);
+            service.commencerVoyance(voyanceActive);
         }
         
         return false;

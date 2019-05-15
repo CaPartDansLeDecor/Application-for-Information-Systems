@@ -13,17 +13,23 @@ import Actions.ActionCommencerVoyance;
 import Actions.ActionConnexion;
 import Actions.ActionDemanderVoyance;
 import Actions.ActionDonneesVoyance;
+import Actions.ActionEnvoyerCommentaire;
 import Actions.ActionHistorique;
 import Actions.ActionInscription;
 import Actions.ActionNouvelleVoyance;
+import Actions.ActionStatistiques;
+import Actions.ActionTerminerVoyance;
 import Serialisation.SerialisationClientProfil;
 import Serialisation.SerialisationCommencerVoyance;
 import Serialisation.SerialisationConnexion;
 import Serialisation.SerialisationDemanderVoyance;
 import Serialisation.SerialisationDonneesVoyance;
+import Serialisation.SerialisationEnvoyerCommentaire;
 import Serialisation.SerialisationHistorique;
 import Serialisation.SerialisationInscription;
 import Serialisation.SerialisationNouvelleVoyance;
+import Serialisation.SerialisationStatistiques;
+import Serialisation.SerialisationTerminerVoyance;
 import dao.JpaUtil;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -115,6 +121,21 @@ public class ActionServlet extends HttpServlet {
                 actionCommencerVoyance.executer(request);
                 serialisationCommencerVoyance.serialiser(request, response);
             break;
+            
+            case"terminerVoyance":
+                ActionTerminerVoyance actionTerminerVoyance = new ActionTerminerVoyance();
+                SerialisationTerminerVoyance serialisationTerminerVoyance = new SerialisationTerminerVoyance();
+                actionTerminerVoyance.executer(request);
+                serialisationTerminerVoyance.serialiser(request, response);
+            break;
+            
+            case"envoyerCommentaire":
+                ActionEnvoyerCommentaire actionEnvoyerCommentaire = new ActionEnvoyerCommentaire();
+                SerialisationEnvoyerCommentaire serialisationEnvoyerCommentaire = new SerialisationEnvoyerCommentaire();
+                actionEnvoyerCommentaire.executer(request);
+                serialisationEnvoyerCommentaire.serialiser(request, response);
+            break;
+            
             
             case "statistiques":
                 ActionStatistiques actionStatistiques = new ActionStatistiques();

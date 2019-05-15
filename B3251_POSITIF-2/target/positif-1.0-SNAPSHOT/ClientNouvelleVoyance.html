@@ -17,35 +17,82 @@ and open the template in the editor.
         <button id="bouton-deconnexion"> Déconnexion </button>  
         <h1> Nouvelle Voyance </h1> <br>
         Type de medium : 
-        <select name="typeMedium" size="1">
+        <select id="champ-typeMedium" size="1">
             <option> Choisir </option>
-            <option > Option 1 </option>
-            <option > Option 2 </option>
-            <option > Option 3 </option>
+            <option > Voyant </option>
+            <option > Tarologue </option>
+            <option > Astrologue </option>
         </select> 
         <button id="bouton-rechercher"> Rechercher </button>  
-        <table border="1" width="100%">
+        <table id="table-medium" border="1" width="100%">
             <tr>
                 <td> Medium </td>
                 <td> Type de médium </td>
                 <td> Description </td>
             </tr>
-        </table>    
+           
+        </table> 
+        <div id="idMedium"> </div>
+        <button id="bouton-demanderVoyance"> Demander la Voyance </button>  
         <script>
-
-            function chargerHistorique() {
-
-                $.ajax({
-                    
-                }).done(function (data) {
-                   
-                }).fail( function (error) { // Appel KO => erreur a gérer
-
-                    
-                });
+            function chargeId(id)
+            {
+                $("#idMedium").empty();
+                $("#idMedium").append(id);
             }
 
+            function chargerMediums() {
+                
+                var champTypeMedium = $('#champ-typeMedium').val();
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'GET',
+                    data: {
+                        action: 'nouvelleVoyance',
+                        typeMedium: champTypeMedium
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    
+                   $("#table-medium").empty();
+                   $("#table-medium").append("<td> Medium </td> <td> Type de médium </td> <td> Description </td>");
+                   console.log(data.mediums);
+                   $.each(data.mediums, function(i,m){
+                       $("#table-medium").append("<tr id='" + m.id + "' onClick=chargeId(" + m.id + ")> <td>" + m.medium + " </td> <td> " + m.mediumType + " </td> <td> " + m.description + " </td> </tr>");
+                       console.log(m.id);
+                       
+                   });
+                }).fail( function (error) { // Appel KO => erreur a gérer
+
+                });
+            }
+            
+            
+             function demanderVoyance() {
+                
+                var champIdMedium = $('#idMedium').text();
+                console.log(champIdMedium);
+                
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'GET',
+                    data: {
+                        action: 'demanderVoyance',
+                        idMedium: champIdMedium
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                        alert("La demande de voyance est en cours");
+                }).fail( function (error) { // Appel KO => erreur a gérer
+
+                });
+            }
+            
+            
+
             $(document).ready(function () {
+                chargerMediums();
                 // ajout d'un "handler" sur le clic du bouton de connexion
                 $('#bouton-profil').on('click', function () {
                     // affichage pour debugage dans la console javascript du navigateur
@@ -63,8 +110,17 @@ and open the template in the editor.
                     console.log('Clic sur le bouton "Deconnexion"');
                     window.location = "Connexion.html";
                 });
-
-                remplirDonnees();
+                $('#bouton-rechercher').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Rechercher"');
+                    chargerMediums();
+                });
+                $('#bouton-demanderVoyance').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Demander Voyance"');
+                    demanderVoyance();
+                });
+                
             });
 
 

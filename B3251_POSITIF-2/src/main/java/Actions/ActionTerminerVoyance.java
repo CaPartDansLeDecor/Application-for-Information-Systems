@@ -5,6 +5,7 @@
  */
 package Actions;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import metier.data.Client;
@@ -25,17 +26,19 @@ public class ActionTerminerVoyance extends Action{
         
         HttpSession session = request.getSession(true);
         Employe employeConnecte = (Employe)session.getAttribute("Connected");
-        Employe e = (Employe)service.connexion(employeConnecte.getMail(),employeConnecte.getPassword());
         
-        Voyance voyanceActive = service.recupererVoyanceActive(e);
-        if(voyanceActive == null){
+        List<Voyance> voyances = employeConnecte.getListeVoyance();
+        Voyance voyance = null;
+        for(Voyance v : voyances){
+            if(v.getDebut()!=null && v.getFin()==null){
+                voyance = v;
+            }
+        }
+        
+        if(voyance == null){
             request.setAttribute("voyanceEnCours",false);
         } else {
-            if(voyanceActive.getDebut()!=null && voyanceActive.getFin()==null){
-                request.setAttribute("voyanceEnCours",true);
-                //On ne peut pas encore terminer la voyance, car le commentaire est ici inconnu
-            }
-            request.setAttribute("voyanceEnCours",false);
+            request.setAttribute("voyanceEnCours",true);
         }
         
         return false;

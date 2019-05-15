@@ -5,11 +5,9 @@
  */
 package Actions;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import metier.data.Client;
 import metier.data.Employe;
 import metier.data.Voyance;
 import metier.service.Service;
@@ -31,9 +29,24 @@ public class ActionDonneesVoyance extends Action{
         
         Voyance voyanceActive = service.recupererVoyanceActive(e);
         if(voyanceActive == null){
-            request.setAttribute("voyanceActive",false);
+            List<Voyance> voyances = employeConnecte.getListeVoyance();
+            Voyance voyance = null;
+            for(Voyance v : voyances){
+                if(v.getDebut()!=null && v.getFin()==null){
+                    voyance = v;
+                }
+            }
+            if(voyance!=null){
+                request.setAttribute("voyanceActive",true);
+                request.setAttribute("voyanceDejaEnCours",true);
+                request.setAttribute("voyance",voyance);
+            } else {
+                request.setAttribute("voyanceActive",false);
+                request.setAttribute("voyanceDejaEnCours",false);
+            }
         } else {
             request.setAttribute("voyanceActive",true);
+            request.setAttribute("voyanceDejaEnCours",false);
             request.setAttribute("voyance",voyanceActive);
         }
         

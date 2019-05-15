@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Employe implements Serializable {
     private Long idEmploye;
     @ManyToMany(mappedBy="listeEmploye", cascade = CascadeType.PERSIST)
     private List<Medium> listeMedium;
-    @OneToMany(mappedBy="employe")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="employe")
     private List<Voyance> listeVoyance;
     
     private Boolean disponibilite = true;

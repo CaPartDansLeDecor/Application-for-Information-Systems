@@ -13,11 +13,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import metier.data.Astrologue;
 import metier.data.Client;
 import metier.data.Tarologue;
@@ -33,11 +31,13 @@ public class SerialisationDonneesVoyance extends Serialisation{
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         
-        
         JsonObject jsonContainer = new JsonObject();
         
         Boolean ans = (Boolean) request.getAttribute("voyanceActive");
         jsonContainer.addProperty("voyanceActive",ans);
+        if(ans){
+            jsonContainer.addProperty("voyanceDejaEnCours", (Boolean) request.getAttribute("voyanceDejaEnCours"));
+        }
         Voyance voyance = (Voyance)request.getAttribute("voyance");
         
         DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");

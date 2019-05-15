@@ -10,14 +10,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import metier.data.Employe;
-import metier.data.Voyance;
-import metier.service.Service;
 
 /**
  *
@@ -30,15 +24,7 @@ public class SerialisationCommencerVoyance extends Serialisation{
         
         JsonObject jsonContainer = new JsonObject();
         
-        //TEST POUR COMPRENDRE POURQUOI VOYANCE ACTIVE EST NULL
-        Service service = new Service();
-        
-        HttpSession session = request.getSession(true);
-        Employe employeConnecte = (Employe)session.getAttribute("Connected");
-        
-        Voyance voyanceActive = service.recupererVoyanceActive(employeConnecte);
-        System.out.println("2 : " + voyanceActive);
-        //FIN TEST
+       
         
         Boolean ans = (Boolean) request.getAttribute("voyanceActive");
         jsonContainer.addProperty("voyanceActive",ans);

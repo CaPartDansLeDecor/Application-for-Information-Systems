@@ -10,8 +10,8 @@
     <class>metier.data.Voyant</class>
     <class>metier.data.Voyance</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/test"/>
-      <property name="javax.persistence.jdbc.user" value="hcanneddu"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/db"/>
+      <property name="javax.persistence.jdbc.user" value="azerty"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="azerty"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
