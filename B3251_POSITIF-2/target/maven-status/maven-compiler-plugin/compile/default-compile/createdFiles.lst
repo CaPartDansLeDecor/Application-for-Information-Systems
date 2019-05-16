@@ -3,6 +3,7 @@ Actions\ActionInscription.class
 Serialisation\SerialisationClientProfil.class
 Serialisation\SerialisationNouvelleVoyance.class
 Actions\ActionDemanderVoyance.class
+Serialisation\SerialisationGenererPredictions.class
 Serialisation\SerialisationHistorique.class
 Actions\ActionStatistiques.class
 Actions\ActionEnvoyerCommentaire.class
@@ -22,4 +23,5 @@ Serialisation\SerialisationInscription.class
 Actions\ActionConnexion.class
 Serialisation\SerialisationDonneesVoyance.class
 Serialisation\SerialisationTerminerVoyance.class
+Actions\ActionGenererPredictions.class
 Actions\ActionHistorique.class

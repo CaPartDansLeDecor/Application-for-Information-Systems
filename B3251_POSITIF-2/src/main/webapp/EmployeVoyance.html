@@ -5,114 +5,115 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-     <head>
-        
+    <head>
+
         <link rel="stylesheet" href="style.css" type="text/css"/>
         <link rel="stylesheet" href="main-layout.css" />
-        <style>
-        .header 
-        {
-            cursor: default;
-            border: 3px #95BAE0 solid;
-            background-color: #95BAE0;
-        }
-        body 
-        {
-            background-color: #FFFFFF;
-        }
-        li#bouton-tabBord
-        {
-            float: left;
-            width: 50%;
-        }
-        li#bouton-deconnexion {
-        }
-        
-        ul
-        {
-            list-style: none    
-        }
-        
-
-        </style>
+        <link rel="stylesheet" href="EmployeVoyance.css" />
         <title>Positif - Voyance</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
-    <body id='body'>
-        <div class="toolbar">
-            <button id="bouton-voyance" class="menu-btn selected">Voyance</button>
-            <button id="bouton-stats" class="menu-btn">Tableau de Bord</button>
-           
+    <body>
+        <div class="full-page">
+            <div class="toolbar">
+                <button id="bouton-voyance" class="menu-btn selected">Voyance</button>
+                <button id="bouton-stats" class="menu-btn">Tableau de Bord</button>
+            </div>
+
+            <div class="main-content" style="flex-direction: column; text-align: left;">
+                <div style="flex: 0 1 35%; width: 100%; display:flex;">
+                    <div style="flex: 0 0 500px; width: 100%; margin-left : 50px; ">
+                        <div class="content-column-title"><span class="underlined">Profil Client</span></div>
+                        <div class="form-line"> Civilité : <span id="champ-civilite"></span></div>
+                        <div class="form-line">Nom : <span id="champ-nom"></span></div>
+                        <div class="form-line">Prénom : <span id="champ-prenom"></span></div>
+                        <div class="form-line">Date de Naissance : <span id="champ-dateNaissance"></span></div>
+                        <div class="form-line">Tel : <span id="champ-tel"></span></div>
+                        <div class="form-line">Mail : <span id="champ-mail"></span></div>
+                    </div>
+                    <div style="flex: 1 1 auto;width: 100%;display:flex; justify-content: center; overflow-y: auto; max-height: 100%;">
+                        <table id='tableau' border="1" width="95%" style="margin: 16px 0;">
+                            <tr style="background-color:blue;">
+                                <td> Medium </td>
+                                <td> Type de médium </td>
+                                <td> Commentaire </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="separator"> </div>
+                <div style="flex: 0 1 65%   ;width: 100%;display:flex;">
+                    <div style="flex: 0 0 500px; width: 100%; margin-left : 50px;">
+                        <div class="content-column-title"><span class="underlined">Astrologie</span></div>
+                        <div class="form-line"> Signe astrologique : <span id='sgnAstro'> </span> </div>
+                        <div class="form-line"> Signe chinois : <span id='sgnChinois'> </span> </div>
+                        <div class="form-line"> Animal totem : <span id='aniTotem'> </span> </div>
+                        <div class="form-line"> Couleur porte-bonheur : <span id='couleurBonheur'> </span></div> 
+                        <div class="content-column-title"><span class="underlined">Medium à incarner</span></div>
+                        <div class="form-line"> Nom : <span id='nomMedium'> </span> </div>
+                        <div class="form-line"> Medium : <span id='medium'> </span> </div>
+                        <div class="form-line"> Description : <span id='description'> </span> </div> 
+                        <div class="form-line" id='specialite'> </div>
+                        <div class="form-line" id='formation'> </div>
+                        <div class="form-line" id='promotion'> </div> 
+                    </div>
+                    <div style="flex: 1 1 auto;width: 100%;display:flex; flex-direction: column;">
+                        <div style="flex: 0 0 96px;background-color: green;">
+                            
+                        </div>
+                        <div style="flex: 1 0 auto;">
+                            
+                        </div>
+                        <div style="flex: 0 0 96px;background-color: green;">
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--
+                
+                 
+                <h2> Générateur de Prédiction </h2>
+
+
+
+                <div id="valeur_coeur"> 3 </div>
+                <input type="range" value="3" max="4" min="1" step="1" id="selec_coeur">
+                <div id="comm_coeur"> </div>
+                <div id="valeur_sante"> 3 </div>
+                <input type="range" value="3" max="4" min="1" step="1" id="selec_sante">
+                <div id="comm_sante"> </div>
+                <div id="valeur_travail"> 3 </div>
+                <input type="range" value="3" max="4" min="1" step="1" id="selec_travail">
+                <div id="comm_travail"> </div>
+
+
+                <div id="voyanceEnCours"> </div>
+
+                <button id="bouton-prediction"> Générer Prédiction </button> 
+                <button id="bouton-commencerVoyance"> Commencer la voyance </button> 
+                <button id="bouton-terminerVoyance"> Terminer la voyance </button> 
+
+                
+                <div class="popup-overlay">
+                    
+                    <div class="popup-content">
+                        <h2>Terminer la Voyance</h2>
+                        <p> Commentaire : </p>
+                        <input id="champ-commentaire"/>
+                        <button id="bouton-envoyerCommentaire"> Terminer la voyance </button>
+                        <p id='error'></p>
+                    </div>
+                </div> -->
+            </div>
+            <div id="bouton-deconnexion">Déconnexion</div>
         </div>
-        
-        <br>
-        
-        <h2 id="voyance">Voyance attribuée : </h2>
-        <h3> Profil Client </h3> <br>
-        Civilité : <div id="champ-civilite"></div><br>
-        Nom : <div id="champ-nom"></div><br>
-        Prénom : <div id="champ-prenom"></div><br>
-        Date de Naissance : <div id="champ-dateNaissance"></div><br>
-        Tel : <div id="champ-tel"></div><br>
-        Mail : <div id="champ-mail"></div><br>
-        <h3> Astrologie  </h3> <br>
-        Signe astrologique : <div id='sgnAstro'> </div> <br>
-        Signe chinois : <div id='sgnChinois'> </div> <br>
-        Animal totem : <div id='aniTotem'> </div> <br>
-        Couleur porte-bonheur : <div id='couleurBonheur'> </div> <br>
-        <h2> Medium à incarner  </h2> <br>
-        Nom : <div id='nomMedium'> </div> <br>
-        Medium : <div id='medium'> </div> <br>
-        Description : <div id='description'> </div> <br>
-        <div id='specialite'> </div> <br>
-        <div id='formation'> </div> <br>
-        <div id='promotion'> </div> <br>
-        <table id='tableau' border="1" width="100%">
-            <tr>
-                <td> Medium </td>
-                <td> Type de médium </td>
-                <td> Commentaire </td>
-            </tr>
-        </table> 
-        <h2> Générateur de Prédiction </h2>
-        
-        
-        
-        <div id="valeur_coeur"> 3 </div>
-        <input type="range" value="3" max="4" min="1" step="1" id="selec_coeur">
-        <div id="comm_coeur"> </div>
-        <div id="valeur_sante"> 3 </div>
-        <input type="range" value="3" max="4" min="1" step="1" id="selec_sante">
-        <div id="comm_sante"> </div>
-        <div id="valeur_travail"> 3 </div>
-        <input type="range" value="3" max="4" min="1" step="1" id="selec_travail">
-        <div id="comm_travail"> </div>
-        
-        
-        <div id="voyanceEnCours"> </div>
-         
-        <button id="bouton-prediction"> Générer Prédiction </button> 
-        <button id="bouton-commencerVoyance"> Commencer la voyance </button> 
-        <button id="bouton-terminerVoyance"> Terminer la voyance </button> 
-        
-        <!--Creates the popup body-->
-        <div class="popup-overlay">
-        <!--Creates the popup content-->
-        <div class="popup-content">
-            <h2>Terminer la Voyance</h2>
-            <p> Commentaire : </p>
-            <input id="champ-commentaire"/>
-            <button id="bouton-envoyerCommentaire"> Terminer la voyance </button>
-            <p id='error'></p>
-        </div>
-        </div>
-        
+
         <script>
-            
-            
-            
+
+
+
             function RemplirDonneesVoyance() {
 
                 $.ajax({
@@ -123,12 +124,12 @@ and open the template in the editor.
                     },
                     dataType: 'json'
                 }).done(function (data) {
-                    if(data.voyanceActive){
+                    if (data.voyanceActive) {
                         //En cas de changement de voyance, on remet vide les champs qui ne sont pas toujours complétés
                         $('#promotion').empty();
                         $('#formation').empty();
                         $('#specialite').empty();
-                        
+
                         $('#champ-civilite').html(data.clientCivilite);
                         $('#champ-nom').html(data.clientNom);
                         $('#champ-prenom').html(data.clientPrenom);
@@ -139,32 +140,32 @@ and open the template in the editor.
                         $('#sgnChinois').html(data.clientSigneChinois);
                         $('#aniTotem').html(data.clientAnimalTotem);
                         $('#couleurBonheur').html(data.clientCouleur);
-                        $('#nomMedium').html(data.mediumNom); 
-                        $('#medium').html(data.mediumSpecialite); 
+                        $('#nomMedium').html(data.mediumNom);
+                        $('#medium').html(data.mediumSpecialite);
                         $('#description').html(data.mediumDescription);
-                        if(data.mediumSpecialite === 'Voyant'){
+                        if (data.mediumSpecialite === 'Voyant') {
                             $('#specialite').html(data.voyantSpecialite);
-                        } else if(data.mediumSpecialite === 'Astrologue'){
+                        } else if (data.mediumSpecialite === 'Astrologue') {
                             $('#formation').html("Formation : " + data.astrologueFormation);
                             $('#promotion').html("Promotion : " + data.astrologuePromotion);
                         }
                         $('#tableau').empty();
-                        $('#tableau').append("<tr><td> Medium </td> <td> Type de médium </td> <td> Commentaire </td> </tr>");
-                        $.each(data.voyances, function(i,v){
+                        $('#tableau').append("<tr style='background-color: blue; color:white;'><td> Medium </td> <td> Type de médium </td> <td> Commentaire </td> </tr>");
+                        $.each(data.voyances, function (i, v) {
                             $('#tableau').append("<tr><td>" + v.medium + "</td> <td>" + v.typeMedium + "</td> <td>" + v.commentaire + "</td></tr>");
                         });
-                        if(data.voyanceDejaEnCours){
+                        if (data.voyanceDejaEnCours) {
                             $('#voyanceEnCours').html("Voyance en cours");
                         } else {
                             $('#voyanceEnCours').html("");
                         }
-                        
+
                     } else {
                         $('#voyance').html('Aucune voyance attribuée actuellement')
                         //A voir pour faire un truc de ce style
                         //$('#body').html("<h1> Aucune voyance attribuée actuellement </h1>");
                     }
-                }).fail( function (error) { // Appel KO => erreur a gérer
+                }).fail(function (error) { // Appel KO => erreur a gérer
 
                     // Popup avec message d'erreur :
                     alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
@@ -173,7 +174,7 @@ and open the template in the editor.
 
                 });
             }
-            
+
             function CommencerVoyance() {
 
                 $.ajax({
@@ -184,16 +185,16 @@ and open the template in the editor.
                     },
                     dataType: 'json'
                 }).done(function (data) {
-                    if(data.voyanceActive){
+                    if (data.voyanceActive) {
                         $('#voyanceEnCours').html("Voyance en cours");
                     } else {
-                        if(data.voyanceDejaEnCours){
+                        if (data.voyanceDejaEnCours) {
                             $('#voyanceEnCours').html("Voyance déja en cours");
                         } else {
                             $('#voyanceEnCours').html("Aucune voyance attribuée");
                         }
                     }
-                }).fail( function (error) { // Appel KO => erreur a gérer
+                }).fail(function (error) { // Appel KO => erreur a gérer
 
                     // Popup avec message d'erreur :
                     alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
@@ -202,7 +203,7 @@ and open the template in the editor.
 
                 });
             }
-            
+
             function TerminerVoyance() {
 
                 $.ajax({
@@ -213,13 +214,13 @@ and open the template in the editor.
                     },
                     dataType: 'json'
                 }).done(function (data) {
-                    if(data.voyanceEnCours){
+                    if (data.voyanceEnCours) {
                         $(".popup, .popup-content").addClass("active");
                         $('#voyanceEnCours').html("");
                     } else {
                         $('#voyanceEnCours').html("Aucune voyance en cours");
                     }
-                }).fail( function (error) { // Appel KO => erreur a gérer
+                }).fail(function (error) { // Appel KO => erreur a gérer
 
                     // Popup avec message d'erreur :
                     alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
@@ -228,9 +229,9 @@ and open the template in the editor.
 
                 });
             }
-            
+
             function EnvoyerCommentaire() {
-                var champCommentaire = $('#champ-commentaire').val();    
+                var champCommentaire = $('#champ-commentaire').val();
                 $.ajax({
                     url: './ActionServlet',
                     method: 'GET',
@@ -240,17 +241,17 @@ and open the template in the editor.
                     },
                     dataType: 'json'
                 }).done(function (data) {
-                    if(data.champNonRempli){
+                    if (data.champNonRempli) {
                         $('#error').html("Vous devez remplir le champ commentaire.");
                     } else {
-                        if(!data.error){
+                        if (!data.error) {
                             $(".popup, .popup-content").removeClass("active");
                             RemplirDonneesVoyance();
                         } else {
                             $('#error').html("Erreur");
                         }
                     }
-                }).fail( function (error) { // Appel KO => erreur a gérer
+                }).fail(function (error) { // Appel KO => erreur a gérer
 
                     // Popup avec message d'erreur :
                     alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
@@ -259,7 +260,7 @@ and open the template in the editor.
 
                 });
             }
-            
+
             function GenererPredictions() {
                 var selecCoeur = $('#selec_coeur').val();
                 var selecSante = $('#selec_sante').val();
@@ -275,7 +276,7 @@ and open the template in the editor.
                     },
                     dataType: 'json'
                 }).done(function (data) {
-                    if(data.voyanceEnCours){
+                    if (data.voyanceEnCours) {
                         $('#voyanceEnCours').html("Voyance en cours");
                         $('#comm_coeur').html(data.coeur);
                         $('#comm_sante').html(data.sante);
@@ -283,7 +284,7 @@ and open the template in the editor.
                     } else {
                         $('#voyanceEnCours').html("Aucune voyance en cours");
                     }
-                }).fail( function (error) { // Appel KO => erreur a gérer
+                }).fail(function (error) { // Appel KO => erreur a gérer
 
                     // Popup avec message d'erreur :
                     alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
@@ -292,8 +293,8 @@ and open the template in the editor.
 
                 });
             }
-            
-            
+
+
 
             $(document).ready(function () {
                 // ajout d'un "handler" sur le clic du bouton de connexion
@@ -328,20 +329,20 @@ and open the template in the editor.
                     console.log('Clic sur le bouton "Generer Predictions"');
                     GenererPredictions();
                 });
-                $('#selec_coeur').change(function() {
+                $('#selec_coeur').change(function () {
                     $('#valeur_coeur').html($(this).val());
                 });
-                $('#selec_sante').change(function() {
+                $('#selec_sante').change(function () {
                     $('#valeur_sante').html($(this).val());
                 });
-                $('#selec_travail').change(function() {
+                $('#selec_travail').change(function () {
                     $('#valeur_travail').html($(this).val());
                 });
 
                 RemplirDonneesVoyance();
             });
-        
-        
+
+
         </script>
     </body>
 </html>

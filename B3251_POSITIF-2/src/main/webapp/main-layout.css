@@ -17,7 +17,7 @@ html, body {
 }
 
 .toolbar {
-    flex-basis: 72px;
+    flex:  0 0 72px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -59,17 +59,17 @@ html, body {
 
 .content-column-title {
     font-family: 'font';
-    font-size: 72px;
+    font-size: 64px;
     color: #253D7E;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .separator {
     flex-basis: 2px;
-    background-color: black;
     height: 95%;
     background-color: #95BAE0;
+    width: 95%;
 }
 
 #bouton-deconnexion {

@@ -5,16 +5,16 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-     <head>
+    <head>
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="main-layout.css" />
-         <style>
+        <style>
             button
             {
                 margin-top: 15px;
                 margin-bottom: 15px;
             }
-            </style>
+        </style>
         <title>Positif - Historique</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,40 +23,40 @@ and open the template in the editor.
     <body>
         <div class="full-page">
             <div class="toolbar">
-                        <button id="bouton-profil" class="menu-btn">Mon profil</button>
-                        <button id="bouton-historique" class="menu-btn selected">Mon historique</button>
-                        <button id="bouton-voyance" class="menu-btn">Nouvelle voyance</button>
-                </div>
-           
+                <button id="bouton-profil" class="menu-btn">Mon profil</button>
+                <button id="bouton-historique" class="menu-btn selected">Mon historique</button>
+                <button id="bouton-voyance" class="menu-btn">Nouvelle voyance</button>
+            </div>
+
             <h2> Historique </h2> <br>
             <div>
                 Médium : <input class="input" id="champ-medium" name="Médium" />
                 Type de medium : 
                 <select class="input" id = "champ-typeMedium" name="typeMedium" size="1">
-                <option> Choisir </option>
-                <option > Voyant </option>
-                <option > Tarologue </option>
-                <option > Astrologue </option>
+                    <option> Choisir </option>
+                    <option > Voyant </option>
+                    <option > Tarologue </option>
+                    <option > Astrologue </option>
                 </select> 
                 <button class="bouton" id="bouton-rechercher"> Rechercher </button>  
             </div>
             <table id="tableau" border="1" width="100%">
-            <tr>
-             <td> Medium </td>
-             <td> Type de médium </td>
-             <td> Date </td>
-             <td> Début </td>
-             <td> Fin </td>
-            </tr>
+                <tr>
+                    <td> Medium </td>
+                    <td> Type de médium </td>
+                    <td> Date </td>
+                    <td> Début </td>
+                    <td> Fin </td>
+                </tr>
             </table>
         </div>
         <script>
 
             function chargerHistorique() {
-                
+
                 var champMedium = $('#champ-medium').val();
                 var champTypeMedium = $('#champ-typeMedium').val();
-                
+
                 $.ajax({
                     url: './ActionServlet',
                     method: 'POST',
@@ -69,13 +69,13 @@ and open the template in the editor.
                 }).done(function (data) {
                     $('#tableau').empty();
                     $('#tableau').append("<tr><td> Medium </td> <td> Type de médium </td> <td> Date </td> <td> Début </td> <td> Fin </td></tr>");
-                    $.each(data.voyances, function(i,voyance){
-                        $('#tableau').append("<tr><td>" + voyance.medium + "</td> <td>" + voyance.typeMedium + "</td> <td>" + voyance.date + "</td> <td>" + voyance.debut + "</td> <td>" + voyance.fin+ "</td></tr>");
-                    
+                    $.each(data.voyances, function (i, voyance) {
+                        $('#tableau').append("<tr><td>" + voyance.medium + "</td> <td>" + voyance.typeMedium + "</td> <td>" + voyance.date + "</td> <td>" + voyance.debut + "</td> <td>" + voyance.fin + "</td></tr>");
+
                     });
-                }).fail( function (error) { // Appel KO => erreur a gérer
-                    
-                    
+                }).fail(function (error) { // Appel KO => erreur a gérer
+
+
                 });
             }
 
