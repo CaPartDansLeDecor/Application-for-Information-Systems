@@ -239,6 +239,19 @@ public class Service {
         return result;
     }
     
+    public List<Object[]> recupererNbClientsParEmploye(){
+        List<Object[]> result=null;
+        try {
+            JpaUtil.creerEntityManager();
+            result=EmployeDao.recupererNbClientsParEmploye();
+        } catch (RollbackException ex) {
+            DebugLogger.log("Porblème avec recupererNbClientsParEmploye", ex);
+        } finally {
+            JpaUtil.fermerEntityManager(); 
+        }
+        return result;
+    }
+    
     public Voyance recupererVoyanceActive(Employe e){
         Voyance result=null;
         try{

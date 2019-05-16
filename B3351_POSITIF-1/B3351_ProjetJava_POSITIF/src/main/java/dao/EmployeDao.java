@@ -67,4 +67,9 @@ public class EmployeDao {
         }
         return v; 
     }
+     public static List<Object[]> recupererNbClientsParEmploye() {
+        Query query = JpaUtil.obtenirEntityManager().createQuery("Select"
+                + " v.employe,count(v) from Voyance v group by v.employe");
+        return query.getResultList();
+    }
 }

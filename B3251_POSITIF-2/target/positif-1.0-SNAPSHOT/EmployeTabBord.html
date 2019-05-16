@@ -76,17 +76,14 @@ and open the template in the editor.
                    $("#Medium").empty();
                    $("#Medium").append("<td> Nom </td> <td> Nombre d'Apparition </td>");
          
-                   $.each(data.objets, function(i,o){
-                       if (o.nomMedium) {
-                           $("#Employe").append("<tr> <td> " + o.nomMedium + " </td> <td>" + o.nbVoyanceAssocie + " </td> </tr>");
-                       } else {
-                           $("#Medium").append("<tr> <td> Voyant </td> <td> " + o.Voyant + " </td> </tr>");
-                           $("#Medium").append("<tr> <td> Tarologue </td> <td> " + o.Tarologue + " </td> </tr>");
-                           $("#Medium").append("<tr> <td> Astrologue </td> <td> " + o.Astrologue + " </td> </tr>");
-                            
-                       }
-                       
-                   });
+                   $.each(data.objetsMedium, function(i,o){
+                           $("#Medium").append(" <tr> <td> " + o.nomMedium + " </td> <td> " + o.MediumNbVoyanceAssocie + " </td> </tr> ");
+                       });
+                   
+                   $.each(data.objetsEmploye, function(i,o){
+                           $("#Employe").append(" <tr> <td> " + o.nomEmploye + " </td> <td> " + o.EmployeNbVoyanceAssocie + " </td> </tr> ");
+                       });
+                   
                 }).fail( function (error) { // Appel KO => erreur a gérer
 
                     // Popup avec message d'erreur :

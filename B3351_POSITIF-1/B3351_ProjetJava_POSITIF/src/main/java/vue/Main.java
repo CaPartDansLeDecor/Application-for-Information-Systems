@@ -152,6 +152,14 @@ public class Main {
             System.out.println(med.getNom()+" Nombre : "+num);
         }
         
+        System.out.println("\n nombre client par employe :");
+        List<Object[]> listObjEmp = service.recupererNbClientsParEmploye();
+        for(Object[] ob : listObjEmp){
+            Employe emp = (Employe)ob[0];
+            Long num = (Long)ob[1];
+            System.out.println(emp.getNom()+" Nombre : "+num);
+        }
+        
         Medium recherche = service.rechercherMediumParID(3L);
         
         System.out.println(recherche);

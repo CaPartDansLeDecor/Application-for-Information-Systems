@@ -15,6 +15,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import metier.data.Medium;
+import metier.data.Employe;
 
 /**
  *
@@ -24,31 +25,32 @@ public class SerialisationStatistiques extends Serialisation{
     
     @Override
     public void serialiser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<Object[]> objets = (List<Object[]>)request.getAttribute("nbClientParEmploye");
-        List<Integer> objetsMedium = (List<Integer>)request.getAttribute("nbClientParMedium");
+        List<Object[]> objetsMedium = (List<Object[]>)request.getAttribute("nbClientParMedium");
+        List<Object[]> objetsEmploye = (List<Object[]>)request.getAttribute("nbClientParEmploye");
         
-        JsonArray jsonArrayObjets = new JsonArray();
-        for (Object[] o : objets) {
+        JsonArray jsonArrayObjetsMedium = new JsonArray();
+        for (Object[] o : objetsMedium) {
             JsonObject jsonObjet = new JsonObject();
             Medium medium = (Medium) o[0];
             String nbApparition = Long.toString((long) o[1]);
             jsonObjet.addProperty("nomMedium", medium.getNom());
-            jsonObjet.addProperty("nbVoyanceAssocie", nbApparition);
-            jsonArrayObjets.add(jsonObjet);
+            jsonObjet.addProperty("MediumNbVoyanceAssocie", nbApparition);
+            jsonArrayObjetsMedium.add(jsonObjet);
         }
         
-        JsonArray jsonArrayObjetMedium = new JsonArray();
-        
-        JsonObject jsonObjet = new JsonObject();
-        jsonObjet.addProperty("Voyant", objetsMedium.get(0));
-        jsonObjet.addProperty("Tarologue", objetsMedium.get(1));
-        jsonObjet.addProperty("Astrologue", objetsMedium.get(2));
-        
-        jsonArrayObjets.add(jsonObjet);
-        
+        JsonArray jsonArrayObjetsEmploye = new JsonArray();
+        for (Object[] o : objetsEmploye) {
+            JsonObject jsonObjet = new JsonObject();
+            Employe employe = (Employe) o[0];
+            String nbApparition = Long.toString((long) o[1]);
+            jsonObjet.addProperty("nomEmploye", employe.getNom());
+            jsonObjet.addProperty("EmployeNbVoyanceAssocie", nbApparition);
+            jsonArrayObjetsEmploye.add(jsonObjet);
+        }
         
         JsonObject jsonContainer = new JsonObject();
-        jsonContainer.add("objets", jsonArrayObjets);
+        jsonContainer.add("objetsMedium", jsonArrayObjetsMedium);
+        jsonContainer.add("objetsEmploye", jsonArrayObjetsEmploye);
         PrintWriter out = this.getWriterWithJsonHeader(response);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         gson.toJson(jsonContainer, out);
