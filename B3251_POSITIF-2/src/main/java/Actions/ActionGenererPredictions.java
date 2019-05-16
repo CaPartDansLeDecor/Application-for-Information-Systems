@@ -24,7 +24,6 @@ public class ActionGenererPredictions extends Action{
     public boolean executer(HttpServletRequest request){
         
         Service service = new Service();
-        System.out.println("gne");
         String coeur = request.getParameter("coeur");
         String sante = request.getParameter("sante");
         String travail = request.getParameter("travail");

@@ -14,6 +14,8 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
     <body>
         <div class="full-page">
@@ -60,60 +62,55 @@ and open the template in the editor.
                         <div class="form-line" id='promotion'> </div> 
                     </div>
                     <div style="flex: 1 1 auto;width: 100%;display:flex; flex-direction: column;">
-                        <div style="flex: 0 0 96px;background-color: green;">
-                            
+                        <div style="flex: 0 0 80px;">
+                            <div class="content-column-title" style="margin-left: 2.5%"><span class="underlined">Générateur de Prédictions</span></div> 
                         </div>
-                        <div style="flex: 1 0 auto;">
-                            
+                        <div style="flex: 1 0 auto; display: flex;">
+                            <div style="flex: 0 0 33.3%; display: flex; flex-direction: column; align-items: center;">
+                                <img src="heart.PNG" style="height:100px;">
+                                <div id="valeur_coeur"> 3 </div>
+                                <input type="range" value="3" max="4" min="1" step="1" id="selec_coeur">
+                                <div style="flex-grow:1; width: 100%; display: flex; align-items: center; justify-content: center;">
+                                    <div id="comm_coeur" style="width: 80%; height: 85%; border: solid 1px #6d88a2; border-radius: 16px;white-space: normal; padding: 8px; font-size: 20px;"></div>
+                                </div>
+                            </div>
+                            <div style="flex: 0 0 33.3%; display: flex; flex-direction: column; align-items: center;">
+                                <img src="plus.PNG" style="height:100px;">
+                                <div id="valeur_sante"> 3 </div>
+                                <input type="range" value="3" max="4" min="1" step="1" id="selec_sante">
+                                <div style="flex-grow:1; width: 100%; display: flex; align-items: center; justify-content: center;">
+                                    <div id="comm_sante" style="width: 80%; height: 85%; border: solid 1px #6d88a2; border-radius: 16px; padding: 8px; font-size: 20px;"></div>
+                                </div>
+                            </div>
+                            <div style="flex: 0 0 33.3%; display: flex; flex-direction: column; align-items: center;">
+                                <img src="valise.PNG" style="height:100px;">
+                                <div id="valeur_travail"> 3 </div>
+                                <input type="range" value="3" max="4" min="1" step="1" id="selec_travail">
+                                <div style="flex-grow:1; width: 100%; display: flex; align-items: center; justify-content: center;">
+                                    <div id="comm_travail" style="width: 80%; height: 85%; border: solid 1px #6d88a2; border-radius: 16px; padding: 8px; font-size: 20px;"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div style="flex: 0 0 96px;background-color: green;">
-                            
+                        <div style="flex: 0 0 80px;display: flex; align-items: center">
+                            <button id="bouton-prediction" class="bouton"> Générer Prédiction </button>
+                            <span id="voyanceEnCours" style="flex-grow: 1; text-align: center; font-size: 20px;"></span>
+                            <button id="bouton-commencerVoyance" class="bouton"> Commencer la voyance </button> 
+                            <button id="bouton-terminerVoyance" class="bouton"> Terminer la voyance </button>
                         </div>
                     </div>
                 </div>
-                <!--
-                
-                 
-                <h2> Générateur de Prédiction </h2>
-
-
-
-                <div id="valeur_coeur"> 3 </div>
-                <input type="range" value="3" max="4" min="1" step="1" id="selec_coeur">
-                <div id="comm_coeur"> </div>
-                <div id="valeur_sante"> 3 </div>
-                <input type="range" value="3" max="4" min="1" step="1" id="selec_sante">
-                <div id="comm_sante"> </div>
-                <div id="valeur_travail"> 3 </div>
-                <input type="range" value="3" max="4" min="1" step="1" id="selec_travail">
-                <div id="comm_travail"> </div>
-
-
-                <div id="voyanceEnCours"> </div>
-
-                <button id="bouton-prediction"> Générer Prédiction </button> 
-                <button id="bouton-commencerVoyance"> Commencer la voyance </button> 
-                <button id="bouton-terminerVoyance"> Terminer la voyance </button> 
-
-                
-                <div class="popup-overlay">
-                    
-                    <div class="popup-content">
-                        <h2>Terminer la Voyance</h2>
-                        <p> Commentaire : </p>
-                        <input id="champ-commentaire"/>
-                        <button id="bouton-envoyerCommentaire"> Terminer la voyance </button>
-                        <p id='error'></p>
-                    </div>
-                </div> -->
             </div>
-            <div id="bouton-deconnexion">Déconnexion</div>
+            <div id="bouton-deconnexion" class="bouton">Déconnexion</div>
+        </div>
+
+
+        <div id="voyance-form" title="Terminer la Voyance">
+            <div style="text-align: left; margin: 12px 20px; font-size: 20px; font-weight: bold;color: #253D7E;">Commentaire :</div>
+            <textarea class="voyance-comment" placeholder="Laissez un commentaire..."></textarea>
+            <div id="error"></div>
         </div>
 
         <script>
-
-
-
             function RemplirDonneesVoyance() {
 
                 $.ajax({
@@ -161,9 +158,7 @@ and open the template in the editor.
                         }
 
                     } else {
-                        $('#voyance').html('Aucune voyance attribuée actuellement')
-                        //A voir pour faire un truc de ce style
-                        //$('#body').html("<h1> Aucune voyance attribuée actuellement </h1>");
+                        $(".main-content").empty().html('<div style="font-size: 20px; margin-top: 32px;">Aucune voyance en cours.</div>');
                     }
                 }).fail(function (error) { // Appel KO => erreur a gérer
 
@@ -215,8 +210,7 @@ and open the template in the editor.
                     dataType: 'json'
                 }).done(function (data) {
                     if (data.voyanceEnCours) {
-                        $(".popup, .popup-content").addClass("active");
-                        $('#voyanceEnCours').html("");
+                        $("#voyance-form").dialog('open');
                     } else {
                         $('#voyanceEnCours').html("Aucune voyance en cours");
                     }
@@ -231,7 +225,7 @@ and open the template in the editor.
             }
 
             function EnvoyerCommentaire() {
-                var champCommentaire = $('#champ-commentaire').val();
+                var champCommentaire = $('.voyance-comment').val();
                 $.ajax({
                     url: './ActionServlet',
                     method: 'GET',
@@ -245,7 +239,8 @@ and open the template in the editor.
                         $('#error').html("Vous devez remplir le champ commentaire.");
                     } else {
                         if (!data.error) {
-                            $(".popup, .popup-content").removeClass("active");
+                            $('#voyance-form').dialog('close');
+                            $(".main-content").empty().html('<div style="font-size: 20px; margin-top: 32px;">Aucune voyance en cours.</div>');
                             RemplirDonneesVoyance();
                         } else {
                             $('#error').html("Erreur");
@@ -297,6 +292,24 @@ and open the template in the editor.
 
 
             $(document).ready(function () {
+
+                $("#voyance-form").dialog({
+                    autoOpen: false,
+                    resizable: false,
+                    draggable: false,
+                    height: 450,
+                    width: 500,
+                    modal: true,
+                    buttons: {
+                        "Envoyer": function () {
+                            EnvoyerCommentaire();
+                        },
+                        "Annuler": function () {
+                            $('#voyance-form').dialog("close");
+                        }
+                    }
+                });
+
                 // ajout d'un "handler" sur le clic du bouton de connexion
                 $('#bouton-deconnexion').on('click', function () {
                     // affichage pour debugage dans la console javascript du navigateur

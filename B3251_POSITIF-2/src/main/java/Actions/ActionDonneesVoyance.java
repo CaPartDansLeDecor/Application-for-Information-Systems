@@ -16,41 +16,41 @@ import metier.service.Service;
  *
  * @author mguilhin
  */
-public class ActionDonneesVoyance extends Action{
-    
+public class ActionDonneesVoyance extends Action {
+
     @Override
-    public boolean executer(HttpServletRequest request){
-        
+    public boolean executer(HttpServletRequest request) {
+
         Service service = new Service();
-        
+
         HttpSession session = request.getSession(true);
-        Employe employeConnecte = (Employe)session.getAttribute("Connected");
-        Employe e = (Employe)service.connexion(employeConnecte.getMail(),employeConnecte.getPassword());
-        
-        Voyance voyanceActive = service.recupererVoyanceActive(e);
-        if(voyanceActive == null){
+        Employe employeConnecte = (Employe) session.getAttribute("Connected");
+        Voyance voyanceActive = service.recupererVoyanceActive(employeConnecte);
+        System.out.println("voyance active : "+voyanceActive);
+        if (voyanceActive == null) {
             List<Voyance> voyances = employeConnecte.getListeVoyance();
             Voyance voyance = null;
-            for(Voyance v : voyances){
-                if(v.getDebut()!=null && v.getFin()==null){
+            for (Voyance v : voyances) {
+                //System.out.println("voyance : "+v);
+                if (v.getDebut() != null && v.getFin() == null) {
                     voyance = v;
                 }
             }
-            if(voyance!=null){
-                request.setAttribute("voyanceActive",true);
-                request.setAttribute("voyanceDejaEnCours",true);
-                request.setAttribute("voyance",voyance);
+            if (voyance != null) {
+                request.setAttribute("voyanceActive", true);
+                request.setAttribute("voyanceDejaEnCours", true);
+                request.setAttribute("voyance", voyance);
             } else {
-                request.setAttribute("voyanceActive",false);
-                request.setAttribute("voyanceDejaEnCours",false);
+                request.setAttribute("voyanceActive", false);
+                request.setAttribute("voyanceDejaEnCours", false);
             }
         } else {
-            request.setAttribute("voyanceActive",true);
-            request.setAttribute("voyanceDejaEnCours",false);
-            request.setAttribute("voyance",voyanceActive);
+            request.setAttribute("voyanceActive", true);
+            request.setAttribute("voyanceDejaEnCours", false);
+            request.setAttribute("voyance", voyanceActive);
         }
-        
+
         return false;
     }
-    
+
 }

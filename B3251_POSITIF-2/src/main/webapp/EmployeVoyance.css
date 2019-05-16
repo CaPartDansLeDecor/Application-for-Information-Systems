@@ -4,3 +4,22 @@
     font-weight: bold;
     color: #95BAE0;
 }
+
+.voyance-comment {
+    resize: none;
+    width:400px;
+    height: 170px;
+    border: solid 1px #8caece;
+    border-radius: 20px;
+    padding: 12px;
+}
+
+.voyance-comment:focus {
+    outline: none;
+}
+
+div[aria-describedby="voyance-form"] .ui-widget-header {
+  font-size: 42px;
+  font-family: font;
+  color: #253D7E;
+}

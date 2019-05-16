@@ -72,20 +72,25 @@ html, body {
     width: 95%;
 }
 
-#bouton-deconnexion {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
+.bouton {
     border: 2px solid #95BAE0;
     padding: 8px 16px;
     border-radius: 16px;
     font-size: 20px;
     font-family: sans-serif;
     font-weight: bold;
+    color: #253D7E;
+    margin: 0 16px;
 }
 
-#bouton-deconnexion:hover {
+.bouton:hover {
     cursor: pointer;
+}
+
+#bouton-deconnexion{
+    position: absolute;
+    bottom: 15px;
+    left: 15px; 
 }
 
 #bouton-connexion, #bouton-inscription {
