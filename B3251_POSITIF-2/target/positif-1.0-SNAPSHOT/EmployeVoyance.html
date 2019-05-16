@@ -8,6 +8,7 @@ and open the template in the editor.
      <head>
         
         <link rel="stylesheet" href="style.css" type="text/css"/>
+        <link rel="stylesheet" href="main-layout.css" />
         <style>
         .header 
         {
@@ -40,10 +41,12 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body id='body'>
-        <ul class="header">
-        <li id="bouton-tabBord"> <h3> Tableau de bord </h3> </li>  
-        <li id="bouton-deconnexion"> <h3> Deconnexion </h3> </li>  
-        </ul>
+        <div class="toolbar">
+            <button id="bouton-voyance" class="menu-btn selected">Voyance</button>
+            <button id="bouton-stats" class="menu-btn">Tableau de Bord</button>
+           
+        </div>
+        
         <br>
         
         <h2 id="voyance">Voyance attribuée : </h2>
@@ -300,7 +303,7 @@ and open the template in the editor.
                     // appel de la fonction connexion
                     window.location = "Connexion.html";
                 });
-                $('#bouton-tabBord').on('click', function () {
+                $('#bouton-stats').on('click', function () {
                     // affichage pour debugage dans la console javascript du navigateur
                     console.log('Clic sur le bouton "Tableau de Bord"');
                     window.location = "EmployeTabBord.html";
