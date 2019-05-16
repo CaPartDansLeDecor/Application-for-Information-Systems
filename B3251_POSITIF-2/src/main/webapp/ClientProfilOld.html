@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            .header 
+            {
+                cursor: default;
+                border: 3px #95BAE0 solid;
+                background-color: #95BAE0;
+            }
+            body 
+            {
+                background-color: #FFFFFF;
+            }
+            li#bouton-historique
+            {
+                float: left;
+                width: 33%;
+            }
+            li#bouton-voyance 
+            {
+                float: left;
+                width: 33%;
+            }
+
+            ul
+            {
+                list-style: none    
+            }
+            </style>
+        <title>Positif - Profil</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <ul class="header">
+        <li id="bouton-historique"> <h3> Mon historique </h3> </li>  
+        <li id="bouton-voyance"> <h3> Nouvelle voyance </h3> </li>  
+        <li id="bouton-deconnexion"> <h3> Deconnexion </h3> </li>  
+        </ul>
+          
+        <h2> Profil </h2> <br>
+        Civilité : <div id='civilite'> </div> <br>
+        Nom : <div id='nom'> </div> <br>
+        Prénom : <div id='prenom'> </div> <br>
+        Date de Naissance : <div id='dateNaissance'> </div> <br>
+        Code Postal : <div id='codePostal'> </div> <br>
+        Tel : <div id='tel'> </div> <br>
+        Mail : <div id='mail'> </div> <br>
+        
+        <h2> Astrologie  </h2> <br>
+        Signe astrologique : <div id='sgnAstro'> </div> <br>
+        Signe chinois : <div id='sgnChinois'> </div> <br>
+        Animal totem : <div id='aniTotem'> </div> <br>
+        Couleur porte-bonheur : <div id='couleurBonheur'> </div> <br>
+        
+        
+        <div id='message'> </div> <br>
+    
+        <script>
+
+            function remplirDonnees() {
+
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'GET',
+                    data: {
+                        action: 'afficherProfil'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    console.log(data);
+                   $('#civilite').html(data.civilite);
+                   $('#nom').html(data.nom);
+                   $('#prenom').html(data.prenom);
+                   $('#dateNaissance').html(data.dateNaissance);
+                   $('#codePostal').html(data.codePostal);
+                   $('#tel').html(data.tel);
+                   $('#mail').html(data.mail);
+                   $('#sgnAstro').html(data.sgnAstro);
+                   $('#sgnChinois').html(data.sgnChinois);
+                   $('#aniTotem').html(data.aniTot);
+                   $('#couleurBonheur').html(data.couleurBonheur);
+                }).fail( function (error) { // Appel KO => erreur a gérer
+
+                    // Popup avec message d'erreur :
+                    alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+                    // Message d'erreur dans la div #message :
+                    $('#message').html('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+
+                });
+            }
+
+            $(document).ready(function () {
+                // ajout d'un "handler" sur le clic du bouton de connexion
+                $('#bouton-deconnexion').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Déconnexion"');
+                    // appel de la fonction connexion
+                    window.location = "Connexion.html";
+                });
+                $('#bouton-voyance').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Nouvelle Voyance"');
+                    window.location = "ClientNouvelleVoyance.html";
+                });
+                $('#bouton-historique').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Historique"');
+                    window.location = "ClientHistorique.html";
+                });
+
+                remplirDonnees();
+            });
+
+
+        </script>
+    
+    </body>
+        
+</html>

@@ -6,64 +6,46 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <link rel="stylesheet" href="style.css" />
-        <style>
-            .header 
-            {
-                cursor: default;
-                border: 3px #95BAE0 solid;
-                background-color: #95BAE0;
-            }
-            body 
-            {
-                background-color: #FFFFFF;
-            }
-            li#bouton-historique
-            {
-                float: left;
-                width: 33%;
-            }
-            li#bouton-voyance 
-            {
-                float: left;
-                width: 33%;
-            }
-
-            ul
-            {
-                list-style: none    
-            }
-            </style>
-        <title>Positif - Profil</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="main-layout.css" />
+        <link rel="stylesheet" href="ClientProfil.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
-        <ul class="header">
-        <li id="bouton-historique"> <h3> Mon historique </h3> </li>  
-        <li id="bouton-voyance"> <h3> Nouvelle voyance </h3> </li>  
-        <li id="bouton-deconnexion"> <h3> Deconnexion </h3> </li>  
-        </ul>
-          
-        <h2> Profil </h2> <br>
-        Civilité : <div id='civilite'> </div> <br>
-        Nom : <div id='nom'> </div> <br>
-        Prénom : <div id='prenom'> </div> <br>
-        Date de Naissance : <div id='dateNaissance'> </div> <br>
-        Code Postal : <div id='codePostal'> </div> <br>
-        Tel : <div id='tel'> </div> <br>
-        Mail : <div id='mail'> </div> <br>
-        
-        <h2> Astrologie  </h2> <br>
-        Signe astrologique : <div id='sgnAstro'> </div> <br>
-        Signe chinois : <div id='sgnChinois'> </div> <br>
-        Animal totem : <div id='aniTotem'> </div> <br>
-        Couleur porte-bonheur : <div id='couleurBonheur'> </div> <br>
-        
-        
-        <div id='message'> </div> <br>
-    
+        <div class="full-page">
+            <div class="toolbar">
+                <button class="menu-btn selected">Profil</button>
+                <button id="bouton-historique" class="menu-btn">Historique</button>
+                <button id="bouton-voyance" class="menu-btn">Nouvelle Voyance</button>
+            </div>
+            <div class="main-content">
+                <div class="content-column">
+
+                    <div class="content-column-title"><span class="underlined">Profil</span></div>
+                    <div class="form-line">Civilité : <span id='civilite'> </span></div>
+                    <div class="form-line">Nom : <span id='nom'> </span></div>
+                    <div class="form-line">Prénom : <span id='prenom'> </span></div>
+                    <div class="form-line">Date de Naissance : <span id='dateNaissance'> </span></div>
+                    <div class="form-line">Code Postal : <span id='codePostal'> </span></div>
+                    <div class="form-line">Tel : <span id='tel'> </span></div>
+                    <div class="form-line">Mail : <span id='mail'> </span></div>
+
+                    <div id='message'> </div>
+                </div>
+                <div class="separator"></div>
+                <div class="content-column">
+
+                    <div class="content-column-title"><span class="underlined">Astrologie</span> </div>
+                    <div class="form-line">Signe astrologique : <span id='sgnAstro'> </span></div>
+                    <div class="form-line">Signe chinois : <span id='sgnChinois'> </span></div>
+                    <div class="form-line">Animal totem : <span id='aniTotem'> </span></div>
+                    <div class="form-line">Couleur porte-bonheur : <span id='couleurBonheur'> </span></div>
+                    
+                </div>
+            </div>
+            <div id="bouton-deconnexion">Déconnexion</div>
+        </div>
+
         <script>
 
             function remplirDonnees() {
@@ -77,18 +59,18 @@ and open the template in the editor.
                     dataType: 'json'
                 }).done(function (data) {
                     console.log(data);
-                   $('#civilite').html(data.civilite);
-                   $('#nom').html(data.nom);
-                   $('#prenom').html(data.prenom);
-                   $('#dateNaissance').html(data.dateNaissance);
-                   $('#codePostal').html(data.codePostal);
-                   $('#tel').html(data.tel);
-                   $('#mail').html(data.mail);
-                   $('#sgnAstro').html(data.sgnAstro);
-                   $('#sgnChinois').html(data.sgnChinois);
-                   $('#aniTotem').html(data.aniTot);
-                   $('#couleurBonheur').html(data.couleurBonheur);
-                }).fail( function (error) { // Appel KO => erreur a gérer
+                    $('#civilite').html(data.civilite);
+                    $('#nom').html(data.nom);
+                    $('#prenom').html(data.prenom);
+                    $('#dateNaissance').html(data.dateNaissance);
+                    $('#codePostal').html(data.codePostal);
+                    $('#tel').html(data.tel);
+                    $('#mail').html(data.mail);
+                    $('#sgnAstro').html(data.sgnAstro);
+                    $('#sgnChinois').html(data.sgnChinois);
+                    $('#aniTotem').html(data.aniTot);
+                    $('#couleurBonheur').html(data.couleurBonheur);
+                }).fail(function (error) { // Appel KO => erreur a gérer
 
                     // Popup avec message d'erreur :
                     alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
@@ -122,7 +104,5 @@ and open the template in the editor.
 
 
         </script>
-    
     </body>
-        
 </html>

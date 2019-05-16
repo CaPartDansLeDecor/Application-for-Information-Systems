@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'font';
+    src: url('TheLabothings.ttf')  format('truetype');
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    color: #253D7E;
+}
+
+.full-page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.toolbar {
+    flex-basis: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #95BAE0;
+}
+
+.menu-btn {
+    width: 180px;
+    height: 100%;
+    flex-grow: 1;
+    border: 0;
+    background-color: transparent;
+    color: white;
+    font-size: 48px;
+    font-family: font;
+}
+
+.menu-btn.selected {
+    background-color: #6d88a2;
+}
+
+.menu-btn:hover {
+    cursor: pointer;
+    background-color: #8caece
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.content-column {
+    flex-grow: 1;
+    height: 100%;
+    text-align: left;
+    padding: 0 26px;
+}
+
+.content-column-title {
+    font-family: 'font';
+    font-size: 72px;
+    color: #253D7E;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.separator {
+    flex-basis: 2px;
+    background-color: black;
+    height: 95%;
+    background-color: #95BAE0;
+}
+
+#bouton-deconnexion {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    border: 2px solid #95BAE0;
+    padding: 8px 16px;
+    border-radius: 16px;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+#bouton-deconnexion:hover {
+    cursor: pointer;
+}
+
+.underlined {
+    border-bottom: solid;
+    padding-bottom: 0px;
+}
