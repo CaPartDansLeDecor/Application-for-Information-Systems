@@ -14,6 +14,7 @@ import Actions.ActionConnexion;
 import Actions.ActionDemanderVoyance;
 import Actions.ActionDonneesVoyance;
 import Actions.ActionEnvoyerCommentaire;
+import Actions.ActionGenererPredictions;
 import Actions.ActionHistorique;
 import Actions.ActionInscription;
 import Actions.ActionNouvelleVoyance;
@@ -25,6 +26,7 @@ import Serialisation.SerialisationConnexion;
 import Serialisation.SerialisationDemanderVoyance;
 import Serialisation.SerialisationDonneesVoyance;
 import Serialisation.SerialisationEnvoyerCommentaire;
+import Serialisation.SerialisationGenererPredictions;
 import Serialisation.SerialisationHistorique;
 import Serialisation.SerialisationInscription;
 import Serialisation.SerialisationNouvelleVoyance;
@@ -127,6 +129,13 @@ public class ActionServlet extends HttpServlet {
                 SerialisationTerminerVoyance serialisationTerminerVoyance = new SerialisationTerminerVoyance();
                 actionTerminerVoyance.executer(request);
                 serialisationTerminerVoyance.serialiser(request, response);
+            break;
+            
+            case"genererPredictions":
+                ActionGenererPredictions actionGenererPredictions = new ActionGenererPredictions();
+                SerialisationGenererPredictions serialisationGenererPredictions = new SerialisationGenererPredictions();
+                actionGenererPredictions.executer(request);
+                serialisationGenererPredictions.serialiser(request, response);
             break;
             
             case"envoyerCommentaire":
