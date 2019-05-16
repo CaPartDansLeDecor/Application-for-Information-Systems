@@ -7,33 +7,9 @@ and open the template in the editor.
 <html>
      <head>
          
+        <link rel="stylesheet" href="main-layout.css" />
         <link rel="stylesheet" href="style.css" />
             <style>
-            .header 
-            {
-                cursor: default;
-                border: 3px #95BAE0 solid;
-                background-color: #95BAE0;
-            }
-            body 
-            {
-                background-color: #FFFFFF;
-            }
-            li#bouton-profil
-            {
-                float: left;
-                width: 33%;
-            }
-            li#bouton-historique 
-            {
-                float: left;
-                width: 33%;
-            }
-
-            ul
-            {
-                list-style: none    
-            }
             button
             {
                 margin-top: 15px;
@@ -46,38 +22,47 @@ and open the template in the editor.
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
-        <ul class="header">
-        <li id="bouton-profil"> <h3> Mon profil </h3> </li>  
-        <li id="bouton-historique"> <h3> Mon historique </h3> </li>  
-        <li id="bouton-deconnexion"> <h3> Deconnexion </h3> </li>  
-        </ul>
-        
-        
-        <h2> Nouvelle Voyance </h2> <br>
-        Type de medium : 
-        <select id="champ-typeMedium" size="1">
-            <option> Choisir </option>
-            <option > Voyant </option>
-            <option > Tarologue </option>
-            <option > Astrologue </option>
-        </select> 
-        <button id="bouton-rechercher"> Rechercher </button>  
-        <table id="table-medium" border="1" width="100%">
-            <tr>
-                <td> Medium </td>
-                <td> Type de médium </td>
-                <td> Description </td>
-            </tr>
-           
-        </table> 
-        <div id="idMedium"> </div>
-        <button id="bouton-demanderVoyance"> Demander la Voyance </button>  
+        <div class="full-page">
+            
+            <div class="toolbar">
+                    <button id="bouton-profil" class="menu-btn">Mon profil</button>
+                    <button id="bouton-historique" class="menu-btn">Mon historique</button>
+                    <button id="bouton-voyance" class="menu-btn selected">Nouvelle voyance</button>
+            </div>
+            <h2> Nouvelle Voyance </h2> <br>
+            Type de medium : 
+            <div>
+            <select class="input" id="champ-typeMedium" size="1">
+                <option> Choisir </option>
+                <option > Voyant </option>
+                <option > Tarologue </option>
+                <option > Astrologue </option>
+            </select> 
+            <button class="bouton" id="bouton-rechercher"> Rechercher </button>  
+            </div>
+            
+            <table id="table-medium" border="1" width="100%">
+                <tr >
+                    <td> Medium </td>
+                    <td> Type de médium </td>
+                    <td> Description </td>
+                </tr>
+
+            </table> 
+            <div id="idMedium"> </div>
+            <div>
+            <button class="bouton" id="bouton-demanderVoyance"> Demander la Voyance </button>  
+            </div>
+        </div>
         <script>
-            function chargeId(id)
-            {
+            
+            function update(elem){
+                $("tr").removeClass();
+                $("tr").addClass("ligne");
+                $(elem).addClass('selected');
                 $("#idMedium").empty();
-                $("#idMedium").append(id);
-            }
+                $("#idMedium").append($(elem).attr("id"));
+            };
 
             function chargerMediums() {
                 
@@ -94,11 +79,11 @@ and open the template in the editor.
                 }).done(function (data) {
                     
                    $("#table-medium").empty();
-                   $("#table-medium").append("<td> Medium </td> <td> Type de médium </td> <td> Description </td>");
-                   console.log(data.mediums);
+                   $("#table-medium").append("<td>  Medium </td> <td> Type de médium </td> <td> Description </td>");
+                   
                    $.each(data.mediums, function(i,m){
-                       $("#table-medium").append("<tr id='" + m.id + "' onClick=chargeId(" + m.id + ")> <td>" + m.medium + " </td> <td> " + m.mediumType + " </td> <td> " + m.description + " </td> </tr>");
-                       console.log(m.id);
+                       $("#table-medium").append("<tr class='ligne' onclick='update(this)' id='" + m.id + "' > <td>" + m.medium + " </td> <td> " + m.mediumType + " </td> <td> " + m.description + " </td> </tr>");
+                       
                        
                    });
                 }).fail( function (error) { // Appel KO => erreur a gérer

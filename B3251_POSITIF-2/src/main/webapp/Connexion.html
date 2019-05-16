@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="main-layout.css" />
         <style>
             .cadre
             {
@@ -17,7 +18,7 @@
             {
                 margin-top: 15px;
             }
-            button 
+            button, div 
             {
                 margin-bottom: 15px;
             }
@@ -34,11 +35,12 @@
         
         <h1>POSIT'IF</h1>
         <div class="cadre">
-        <h3> Connexion </h3>   
-        Identifiant : <input type="text" id="champ-login" name="login" placeholder="votre identifiant" /><br>
-        Mot de passe : <input type="password" id="champ-password" name="password" /><br>
-        <button id="bouton-connexion">Se connecter</button>   
-        <a href="Inscription.html">S'inscrire</a> 
+        <h3> Bienvenue </h3>   
+        Identifiant : <input class="input" type="text" id="champ-login" name="login" placeholder="votre identifiant" /><br>
+        Mot de passe : <input class="input" type="password" id="champ-password" name="password" /><br>
+        <button id="bouton-connexion"> Connexion </button><br>
+        Pas encore inscrit ?
+        <a href="Inscription.html">Cliquez ici</a> 
         <div id="message"></div>
         </div>
         

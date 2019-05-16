@@ -88,6 +88,37 @@ html, body {
     cursor: pointer;
 }
 
+#bouton-connexion, #bouton-inscription {
+    border: 2px solid #95BAE0;
+    padding: 8px 16px;
+    border-radius: 16px;
+    font-size: 20px;
+    font-family: font;
+    font-weight: bold;
+    background-color: #FFFFFF;
+    color: #253D7E;
+}
+
+.input, .bouton {
+    border: 2px solid #95BAE0;
+    padding: 5px 10px;
+    border-radius: 9px;
+    background-color: #FFFFFF;
+}
+
+
+label {
+    text-align: left;
+}
+
+.ligne:hover, .selected {
+    cursor: pointer;
+    background-color: #8caece
+}
+
+#idMedium {
+    display: none;
+}
 .underlined {
     border-bottom: solid;
     padding-bottom: 0px;
