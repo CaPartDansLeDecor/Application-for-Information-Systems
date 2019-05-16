@@ -51,12 +51,21 @@ and open the template in the editor.
             </tr>
         </table> 
         <h1> Générateur de Prédiction </h1>
-        <div id="coeur"> </div>
-        <div id="sante"> </div>
-        <div id="travail"> </div>
         
-        <div id="voyanceRunning"> </div>
         
+        
+        <div id="valeur_coeur"> 3 </div>
+        <input type="range" value="3" max="4" min="1" step="1" id="selec_coeur">
+        <div id="comm_coeur"> </div>
+        <div id="valeur_sante"> 3 </div>
+        <input type="range" value="3" max="4" min="1" step="1" id="selec_sante">
+        <div id="comm_sante"> </div>
+        <div id="valeur_travail"> 3 </div>
+        <input type="range" value="3" max="4" min="1" step="1" id="selec_travail">
+        <div id="comm_travail"> </div>
+        
+        
+        <div id="voyanceEnCours"> </div>
          
         <button id="bouton-prediction"> Générer Prédiction </button> 
         <button id="bouton-commencerVoyance"> Commencer la voyance </button> 
@@ -75,6 +84,7 @@ and open the template in the editor.
         </div>
         
         <script>
+            
             
             
             function RemplirDonneesVoyance() {
@@ -118,9 +128,9 @@ and open the template in the editor.
                             $('#tableau').append("<tr><td>" + v.medium + "</td> <td>" + v.typeMedium + "</td> <td>" + v.commentaire + "</td></tr>");
                         });
                         if(data.voyanceDejaEnCours){
-                            $('#voyanceRunning').html("Voyance en cours");
+                            $('#voyanceEnCours').html("Voyance en cours");
                         } else {
-                            $('#voyanceRunning').html("");
+                            $('#voyanceEnCours').html("");
                         }
                         
                     } else {
@@ -149,12 +159,12 @@ and open the template in the editor.
                     dataType: 'json'
                 }).done(function (data) {
                     if(data.voyanceActive){
-                        $('#voyanceRunning').html("Voyance en cours");
+                        $('#voyanceEnCours').html("Voyance en cours");
                     } else {
                         if(data.voyanceDejaEnCours){
-                            $('#voyanceRunning').html("Voyance déja en cours");
+                            $('#voyanceEnCours').html("Voyance déja en cours");
                         } else {
-                            $('#voyanceRunning').html("Aucune voyance attribuée");
+                            $('#voyanceEnCours').html("Aucune voyance attribuée");
                         }
                     }
                 }).fail( function (error) { // Appel KO => erreur a gérer
@@ -179,8 +189,9 @@ and open the template in the editor.
                 }).done(function (data) {
                     if(data.voyanceEnCours){
                         $(".popup, .popup-content").addClass("active");
+                        $('#voyanceEnCours').html("");
                     } else {
-                        $('#popup').html("Aucune voyance en cours");
+                        $('#voyanceEnCours').html("Aucune voyance en cours");
                     }
                 }).fail( function (error) { // Appel KO => erreur a gérer
 
@@ -223,6 +234,39 @@ and open the template in the editor.
                 });
             }
             
+            function GenererPredictions() {
+                var selecCoeur = $('#selec_coeur').val();
+                var selecSante = $('#selec_sante').val();
+                var selecTravail = $('#selec_travail').val();
+                $.ajax({
+                    url: './ActionServlet',
+                    method: 'GET',
+                    data: {
+                        coeur: selecCoeur,
+                        sante: selecSante,
+                        travail: selecTravail,
+                        action: 'genererPredictions'
+                    },
+                    dataType: 'json'
+                }).done(function (data) {
+                    if(data.voyanceEnCours){
+                        $('#voyanceEnCours').html("Voyance en cours");
+                        $('#comm_coeur').html(data.coeur);
+                        $('#comm_sante').html(data.sante);
+                        $('#comm_travail').html(data.travail);
+                    } else {
+                        $('#voyanceEnCours').html("Aucune voyance en cours");
+                    }
+                }).fail( function (error) { // Appel KO => erreur a gérer
+
+                    // Popup avec message d'erreur :
+                    alert('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+                    // Message d'erreur dans la div #message :
+                    $('#message').html('Erreur lors de l\'appel: HTTP Code ' + error.status + ' ~ ' + error.statusText + ' ~ ' + error.getResponseHeader('Content-Type'));
+
+                });
+            }
+            
             
 
             $(document).ready(function () {
@@ -252,6 +296,20 @@ and open the template in the editor.
                     // affichage pour debugage dans la console javascript du navigateur
                     console.log('Clic sur le bouton "Envoyer Commentaire"');
                     EnvoyerCommentaire();
+                });
+                $('#bouton-prediction').on('click', function () {
+                    // affichage pour debugage dans la console javascript du navigateur
+                    console.log('Clic sur le bouton "Generer Predictions"');
+                    GenererPredictions();
+                });
+                $('#selec_coeur').change(function() {
+                    $('#valeur_coeur').html($(this).val());
+                });
+                $('#selec_sante').change(function() {
+                    $('#valeur_sante').html($(this).val());
+                });
+                $('#selec_travail').change(function() {
+                    $('#valeur_travail').html($(this).val());
                 });
 
                 RemplirDonneesVoyance();
