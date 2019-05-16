@@ -6,13 +6,39 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Inscription</title>
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            .cadre
+            {
+                border: 3px #DEEAF6 solid;
+                border-radius: 10px;
+                background-color: #DEEAF6;
+              
+                width: 30%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            input, button
+            {
+                margin-top: 15px;
+            }
+            button 
+            {
+                margin-bottom: 15px;
+            }
+            body
+            {
+                background-color: #94BAE1;
+            }
+        </style>
+        <title>Positif - Inscription</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
         <h1> POSIT'IF </h1>
+        <div class="cadre">
         <h3> Inscription </h3>
         Civilité : <input type="text" id="champ-civilite" name="name"/> <br>
         Nom : <input type="text" id="champ-nom" name="name"/> <br>
@@ -21,9 +47,10 @@ and open the template in the editor.
         Code Postal : <input type="text" id="champ-codePostal" name="name"/> <br>
         Tel : <input type="text" id="champ-tel" name="name"/> <br>
         Mail : <input type="text" id="champ-mail" name="name"/> <br>
-        Mot de passe : <input type="text" id="champ-mdp" name="name"/> <br>
+        Mot de passe : <input type="password" id="champ-mdp" name="name"/> <br>
         <button id="bouton-inscription">Inscription</button>   
         <div id ='message'> </div>
+        </div>
         
          <script>
 

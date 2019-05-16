@@ -6,37 +6,60 @@ and open the template in the editor.
 -->
 <html>
      <head>
-         
-         <link rel="stylesheet" href="style.css" type="text/css">
-         <link rel="stylesheet" href="style.css" type="text/css"/>
-         <link rel="stylesheet" href="style.css" type="text/css">
+        
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <style>
+        .header 
+        {
+            cursor: default;
+            border: 3px #95BAE0 solid;
+            background-color: #95BAE0;
+        }
+        body 
+        {
+            background-color: #FFFFFF;
+        }
+        li#bouton-tabBord
+        {
+            float: left;
+            width: 50%;
+        }
+        li#bouton-deconnexion {
+        }
+        
+        ul
+        {
+            list-style: none    
+        }
+        
 
-
-
-
-        <title>client</title>
+        </style>
+        <title>Positif - Voyance</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body id='body'>
-        <button id="bouton-tabBord"> Tableau de Bord </button>  
-        <button id="bouton-deconnexion"> Deconnexion </button>  <br>
+        <ul class="header">
+        <li id="bouton-tabBord"> <h3> Tableau de bord </h3> </li>  
+        <li id="bouton-deconnexion"> <h3> Deconnexion </h3> </li>  
+        </ul>
+        <br>
         
-        <h1 id="voyance">Voyance attribuée : </h1>
-        <h1> Profil Client </h1> <br>
+        <h2 id="voyance">Voyance attribuée : </h2>
+        <h3> Profil Client </h3> <br>
         Civilité : <div id="champ-civilite"></div><br>
         Nom : <div id="champ-nom"></div><br>
         Prénom : <div id="champ-prenom"></div><br>
         Date de Naissance : <div id="champ-dateNaissance"></div><br>
         Tel : <div id="champ-tel"></div><br>
         Mail : <div id="champ-mail"></div><br>
-        <h1> Astrologie  </h1> <br>
+        <h3> Astrologie  </h3> <br>
         Signe astrologique : <div id='sgnAstro'> </div> <br>
         Signe chinois : <div id='sgnChinois'> </div> <br>
         Animal totem : <div id='aniTotem'> </div> <br>
         Couleur porte-bonheur : <div id='couleurBonheur'> </div> <br>
-        <h1> Medium à incarner  </h1> <br>
+        <h2> Medium à incarner  </h2> <br>
         Nom : <div id='nomMedium'> </div> <br>
         Medium : <div id='medium'> </div> <br>
         Description : <div id='description'> </div> <br>
@@ -50,7 +73,7 @@ and open the template in the editor.
                 <td> Commentaire </td>
             </tr>
         </table> 
-        <h1> Générateur de Prédiction </h1>
+        <h2> Générateur de Prédiction </h2>
         
         
         

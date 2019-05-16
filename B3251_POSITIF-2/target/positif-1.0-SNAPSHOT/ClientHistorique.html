@@ -6,16 +6,52 @@ and open the template in the editor.
 -->
 <html>
      <head>
-        <title>client</title>
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            .header 
+            {
+                cursor: default;
+                border: 3px #95BAE0 solid;
+                background-color: #95BAE0;
+            }
+            body 
+            {
+                background-color: #FFFFFF;
+            }
+            li#bouton-profil
+            {
+                float: left;
+                width: 33%;
+            }
+            li#bouton-voyance 
+            {
+                float: left;
+                width: 33%;
+            }
+
+            ul
+            {
+                list-style: none    
+            }
+            input
+            {
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            </style>
+        <title>Positif - Historique</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
-        <button id="bouton-profil">Mon Profil</button>  
-        <button id="bouton-voyance">Nouvelle Voyance</button>  
-        <button id="bouton-deconnexion"> Déconnexion </button>  
-        <h1> Historique </h1> <br>
+        <ul class="header">
+        <li id="bouton-profil"> <h3> Mon profil </h3> </li>  
+        <li id="bouton-voyance"> <h3> Nouvelle voyance </h3> </li>  
+        <li id="bouton-deconnexion"> <h3> Deconnexion </h3> </li>  
+        </ul>
+        
+        <h2> Historique </h2> <br>
         Médium : <input id="champ-medium" name="Médium" />
         Type de medium : 
         <select id = "champ-typeMedium" name="typeMedium" size="1">

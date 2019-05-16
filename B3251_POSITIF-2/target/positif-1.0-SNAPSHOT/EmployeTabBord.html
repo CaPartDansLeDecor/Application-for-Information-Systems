@@ -6,56 +6,69 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>client</title>
+        <style> 
+            .header 
+            {
+                cursor: default;
+                border: 3px #95BAE0 solid;
+                background-color: #95BAE0;
+            }
+            body 
+            {
+                background-color: #FFFFFF;
+            }
+            li#bouton-voyance
+            {
+                float: left;
+                width: 50%;
+            }
+            li#bouton-deconnexion {
+            }
+            ul
+            {
+                list-style: none    
+            }
+            
+            
+        </style>
+        <link rel="stylesheet" href="style.css" />
+        <title>Positif - Tableau de Bord</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     </head>
     <body>
-        <button id="bouton-voyance">Voyance</button> 
-        <button id="bouton-deconnexion"> Déconnexion </button>  
-        <h1> Statistiques </h1> <br>
-        <h2> Nombre de client par employé </h2>
-        <canvas id="canvas" width="750" height="150"></canvas>
+        <ul class="header">
+        <li id="bouton-voyance"> <h3> Voyance </h3> </li>  
+        <li id="bouton-deconnexion"> <h3> Deconnexion </h3> </li>  
+        </ul>
+        
+        <h2> Statistiques </h2> <br>
+
+        <div id="bloc1">
+        <h3> Nombre de client par employé </h3>
+       <svg width='100%' height='400px'>
+            <g>
+              <rect fill='#3d5599' x="100" width="45" y="50%" height="45%"></rect>  <!-- On impose que la la somme y + height  soit 95 pour laisser de la place à la légend-->
+              <text  y="100%" x="100" >Emp 1</text>
+              <rect fill='#3d5599' x="150" width="45" y="50%" height="45%"></rect>
+              <rect fill='#3d5599' x="200" width="45" y="20%" height="75%"></rect>
+              <rect fill='#3d5599' x="250" width="45" y="10%" height="85%"></rect>
+
+              
+            </g>
+          </svg>
         <table id="Employe" border="1"> </table>
-        <h2> Nombre de client par medium </h2>
+        </div>
+        <div id="bloc2">
+        <h3> Nombre de client par medium </h3>
         <!-- <div id="nom"> </div>
         <div id="nbApparition"> </div> -->
         <table id="Medium" border="1"> </table>
+        </div>
+        
         <script>
-            var canvas  = document.querySelector('#canvas');
-            var context = canvas.getContext('2d');
-            context.fillText("texte", 10, 140);
-            context.fillText("texte", 60, 140);
-            context.fillText("texte", 110, 140);
-            context.fillText("texte", 160, 140);
-            context.fillText("texte", 210, 140);
-            context.fillText("texte", 260, 140);
-            context.fillText("texte", 310, 140);
-            context.fillText("texte", 360, 140);
-            context.fillText("texte", 410, 140);
-            context.fillText("texte", 460, 140);
-            context.fillText("texte", 510, 140);
-            context.fillText("texte", 560, 140);
-            var hauteurMax = 120;
-            var taille = 80;
-            context.fillStyle = "gold";
-            context.fillRect(5, hauteurMax - taille, 45, taille);
-            context.fillRect(55, 0, 45, 120);
-            context.fillRect(105, hauteurMax - taille, 45, taille);
-            context.fillRect(155, 0, 45, 120);
-            context.fillRect(205, hauteurMax - taille, 45, taille);
-            context.fillRect(255, 0, 45, 120);
-            context.fillRect(305, hauteurMax - taille, 45, taille);
-            context.fillRect(355, 0, 45, 120);
-            context.fillRect(405, hauteurMax - taille, 45, taille);
-            context.fillRect(455, 0, 45, 120);
-            context.fillRect(505, hauteurMax - taille, 45, taille);
-            context.fillRect(555, 0, 45, 120);
-            context.fillRect(605, 0, hauteurMax - taille, 45, taille);
-            context.fillRect(655, 0, 45, 120);
-            context.fillRect(705, 0, hauteurMax - taille, 45, taille);
-          
+         
 		
 
 

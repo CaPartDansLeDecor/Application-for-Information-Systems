@@ -1,23 +1,27 @@
-
-.popup-overlay {
-visibility:hidden;
-position:absolute;
-background:#ffffff;
-border:3px solid #666666;
-width:50%;
-height:50%;
-left:25%;
+@font-face {
+    font-family: 'font';
+    src: url('TheLabothings.ttf')  format('truetype');
+}    
+h1 
+{
+    font-family: 'font';
+    font-size: 140px;
+    color: #253D7E;
 }
-
-.popup-content {
-visibility:hidden;
+h2 
+{
+    font-family: 'font';
+    font-size: 72px;
+    color: #253D7E;
 }
-
-.popup-overlay.active{
-visibility:visible;
-text-align:center;
+h3 
+{
+    font-family: 'font';
+    font-size: 24px;
+    color: #253D7E;
 }
-
-.popup-content.active {
-visibility:visible;
+body
+{
+    text-align: center;
+    color: #253D7E;
 }
