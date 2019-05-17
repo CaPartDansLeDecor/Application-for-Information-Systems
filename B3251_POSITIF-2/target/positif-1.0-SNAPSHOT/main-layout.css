@@ -57,9 +57,24 @@ html, body {
     padding: 0 26px;
 }
 
+.content-column-tabBord {
+    flex:0 1 50%;
+    height: 100%;
+    text-align: left;
+    padding: 0 26px;
+}
+
 .content-column-title {
     font-family: 'font';
     font-size: 64px;
+    color: #253D7E;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.content-column-title-tabBord {
+    font-family: 'font';
+    font-size: 32px;
     color: #253D7E;
     margin-top: 12px;
     margin-bottom: 12px;
