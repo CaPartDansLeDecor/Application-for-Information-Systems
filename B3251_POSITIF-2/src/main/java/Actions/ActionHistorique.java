@@ -34,7 +34,7 @@ public class ActionHistorique extends Action{
             voyancesFiltrees = voyances;
         } else if(!medium.equals("") && typeMedium.equals("Choisir")){
             for(Voyance v : voyances){
-                if(v.getMedium().getNom().equals(medium)){
+                if(v.getMedium().getNom().contains(medium)){
                     voyancesFiltrees.add(v);
                 }
             }
@@ -46,7 +46,7 @@ public class ActionHistorique extends Action{
             }
         } else {
             for(Voyance v : voyances){
-                if(v.getMedium().getNom().equals(medium) && v.getMedium().getTalent().equals(typeMedium) ){
+                if(v.getMedium().getNom().contains(medium) && v.getMedium().getTalent().equals(typeMedium) ){
                     voyancesFiltrees.add(v);
                 }
             }

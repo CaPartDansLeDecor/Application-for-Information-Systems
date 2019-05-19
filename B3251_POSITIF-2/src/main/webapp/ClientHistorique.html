@@ -30,7 +30,7 @@ and open the template in the editor.
 
             <h2> Historique </h2> <br>
             <div>
-                Médium : <input class="input" id="champ-medium" name="Médium" />
+                Médium : <input class="input" id="champ-medium" name="Médium" oninput="textChanged()"/>
                 Type de medium : 
                 <select class="input" id = "champ-typeMedium" name="typeMedium" size="1">
                     <option> Choisir </option>
@@ -77,6 +77,10 @@ and open the template in the editor.
 
 
                 });
+            }
+            
+            function textChanged(){
+                chargerHistorique();
             }
 
             $(document).ready(function () {

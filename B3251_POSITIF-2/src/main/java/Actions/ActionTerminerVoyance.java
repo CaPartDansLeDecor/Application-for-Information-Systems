@@ -26,8 +26,9 @@ public class ActionTerminerVoyance extends Action{
         
         HttpSession session = request.getSession(true);
         Employe employeConnecte = (Employe)session.getAttribute("Connected");
+        Employe e = (Employe) service.connexion(employeConnecte.getMail(), employeConnecte.getPassword());
         
-        List<Voyance> voyances = employeConnecte.getListeVoyance();
+        List<Voyance> voyances = e.getListeVoyance();
         Voyance voyance = null;
         for(Voyance v : voyances){
             if(v.getDebut()!=null && v.getFin()==null){

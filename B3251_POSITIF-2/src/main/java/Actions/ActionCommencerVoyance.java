@@ -27,9 +27,10 @@ public class ActionCommencerVoyance extends Action{
         
         HttpSession session = request.getSession(true);
         Employe employeConnecte = (Employe)session.getAttribute("Connected");
+        Employe e = (Employe) service.connexion(employeConnecte.getMail(), employeConnecte.getPassword());
         
-        Voyance voyanceActive = service.recupererVoyanceActive(employeConnecte);
-        List<Voyance> voyances = employeConnecte.getListeVoyance();
+        Voyance voyanceActive = service.recupererVoyanceActive(e);
+        List<Voyance> voyances = e.getListeVoyance();
         if(voyanceActive == null){
             Voyance voyance = null;
             for(Voyance v : voyances){

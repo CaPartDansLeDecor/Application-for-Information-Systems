@@ -25,13 +25,14 @@ public class ActionDonneesVoyance extends Action {
 
         HttpSession session = request.getSession(true);
         Employe employeConnecte = (Employe) session.getAttribute("Connected");
-        Voyance voyanceActive = service.recupererVoyanceActive(employeConnecte);
-        System.out.println("voyance active : "+voyanceActive);
+        Employe e = (Employe) service.connexion(employeConnecte.getMail(), employeConnecte.getPassword());
+        Voyance voyanceActive = service.recupererVoyanceActive(e);
         if (voyanceActive == null) {
-            List<Voyance> voyances = employeConnecte.getListeVoyance();
+            List<Voyance> voyances = e.getListeVoyance();
+            System.out.println("Taille  : " + voyances.size());
             Voyance voyance = null;
             for (Voyance v : voyances) {
-                //System.out.println("voyance : "+v);
+                System.out.println("voyance : "+v);
                 if (v.getDebut() != null && v.getFin() == null) {
                     voyance = v;
                 }
